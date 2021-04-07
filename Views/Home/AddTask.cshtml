@@ -1,0 +1,134 @@
+﻿@model ProjectManagementApp.Models.Task
+
+@{
+    ViewBag.Title = "Add Task";
+}
+
+<h2>Add Task</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.projectName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.projectName, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownListFor(model => model.projectName, Model.projectlist, "Select Project", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.projectName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.taskName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.taskName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the Task Name" } })
+            @Html.ValidationMessageFor(model => model.taskName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div>
+
+        <div style="padding-left:14em;">
+            <input id="switch" type="checkbox" value="" />
+            <Label for="switch">Parent Task</Label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.priority, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <span> @Html.EditorFor(model => model.priority, new { htmlAttributes = new { @id = "slider", @type = "range", @min = "0", @max = "30", @value = "15" } })</span><div id="range"></div> 
+        </div>
+    </div>
+
+    <div class="form-group x">
+        @Html.LabelFor(model => model.parentTask, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.parentTask, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownListFor(model => model.parentTask, Model.parenttasklist, "Select Parent Task", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.parentTask, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "datepicker form-control", @placeholder = "Select Start Date" } })
+            @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "datepicker form-control", @placeholder = "Select End Date" } })
+            @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownListFor(model => model.userName, Model.userlist, "Select User", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add Task" class="btn btn-default" />
+            <span style="padding-left:10px;"><input type="reset" value="Reset" class="btn btn-default" /></span>
+        </div>
+    </div>
+</div>
+}
+
+
+
+<hr />
+<footer>
+    <p>&copy; @DateTime.Now.Year - Project Management Application</p>
+</footer>
+
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+@section Scripts {
+
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript">
+        //for set date
+        $(function () {
+            $("#switch").click(function () {
+                if ($(this).is(":checked")) {
+                    $(".x").hide();
+
+                } else {
+                    $(".x").show();
+                }
+            });
+        });
+
+        //datapicker
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+            });
+        });
+
+        //priority range
+        range.innerHTML = slider.value;
+
+        slider.oninput = function () {
+            range.innerHTML = this.value;
+        }
+
+
+    </script>
+
+}

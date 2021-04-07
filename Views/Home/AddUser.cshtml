@@ -1,0 +1,200 @@
+﻿@model ProjectManagementApp.Models.User
+
+@{
+    ViewBag.Title = "Add User";
+}
+
+<style>
+    .link-button:visited, .link-button:link {
+        background: #ffffff none repeat scroll 0 0;
+        border: 2px solid #4276B8;
+        color: #4276B8;
+        outline: medium none;
+        padding: 10px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .link-button:hover, .link-button:active {
+        Background-color: #4276B8;
+        Color: #ffffff;
+    }
+
+    .pad {
+        padding-left: 10px;
+    }
+
+    .padu {
+        padding-top: 5px;
+    }
+</style>
+
+<h2>Add User</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.firstName, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Enter the First Name"@*, @required = "First Name Requierd"*@ }
+                })
+                @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lastName, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Enter the Last Name"@*, @required = "Last Name Requierd"*@ }
+                })
+                @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.employeeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.employeeId, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Enter the Employee ID"@*, @required = "Employee ID Requierd"*@ }
+                })
+                @Html.ValidationMessageFor(model => model.employeeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add User" class="btn btn-default" />
+                <span style="padding-left:10px;"><input type="reset" value="Reset" class="btn btn-default" /></span>
+            </div>
+
+        </div>
+    </div>
+}
+<hr />
+
+<div class="container">
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+        </span>
+        <input type="text" id="search" placeholder="Search User" class="form-control" />
+    </div>
+</div>
+<br />
+
+
+<div class="container">
+    <div class="input-group">
+        <h4>Sort By:</h4>
+        <div class="padu">
+            <span class="pad">
+                @Html.ActionLink("First Name", "AddUser", new { sortby = ViewBag.SortByFirstName }, new { @class = "link-button" })
+            </span>
+            <span class="pad">
+                @Html.ActionLink("Last Name", "AddUser", new { sortby = ViewBag.SortByLastName }, new { @class = "link-button" })
+            </span>
+            <span class="pad">
+                @Html.ActionLink("Employee Id", "AddUser", new { sortby = ViewBag.SortByEmpId }, new { @class = "link-button" })
+            </span>
+        </div>
+
+    </div>
+</div>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+           @Html.DisplayNameFor(model => model.firstName)
+        </th>
+       
+        <th>
+           @Html.DisplayNameFor(model => model.lastName)
+        </th>
+            
+        <th>
+            @Html.DisplayNameFor(model => model.employeeId)
+       </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.userlist)
+    {
+        <tr class="search">
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employeeId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit User", "EditUser", new { id = item.Id }) |
+                @Html.ActionLink("Delete User", "DeleteUser", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<hr />
+<footer>
+    <p>&copy; @DateTime.Now.Year - Project Management Application</p>
+</footer>
+
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+@section Scripts {
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <script type="text/javascript">
+
+        //Search user
+        $(document).ready(function () {
+
+            function Contains(text_one, text_two) {
+                if (text_one.indexOf(text_two) != -1)
+                    return true;
+            }
+            $("#search").keyup(function () {
+                var searchtext = $("#search").val().toLowerCase();
+                $(".search").each(function () {
+                    if (!Contains($(this).text().toLowerCase(), searchtext)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+
+            });
+        });
+    </script>
+
+
+
+}

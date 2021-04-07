@@ -1,0 +1,117 @@
+﻿@model IEnumerable<ProjectManagementApp.Models.Task>
+
+@{
+    ViewBag.Title = "View Task";
+}
+
+<h2>View Task</h2>
+
+
+<br />
+@using (Html.BeginForm("ViewTask", "Home", FormMethod.Get))
+{
+    <div class="container">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+            </span>
+            @Html.TextBox("search",null,new { @class = "form-control", @placeholder = "Enter the Task Name" })
+            <span style="padding-left:10px;"><input type="submit" value="Search" class="btn btn-default" /></span>
+        </div>
+    </div>
+}
+<br />
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.projectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.taskName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.priority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.parentTask)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userName)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="search">
+            <td>
+                @Html.DisplayFor(modelItem => item.projectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.taskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.priority)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.parentTask)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.startDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userName)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<hr />
+<footer>
+    <p>&copy; @DateTime.Now.Year - Project Management Application</p>
+</footer>
+
+
+@*@section Scripts {
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+
+        //Search Project
+        $(document).ready(function () {
+
+            function Contains(text_one, text_two) {
+                if (text_one.indexOf(text_two) != -1)
+                    return true;
+            }
+            $("#search").click(function () {
+                var searchtext = $("#search").val().toLowerCase();
+                $(".search").each(function () {
+                    if (!Contains($(this).text().toLowerCase(), searchtext)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+
+            });
+        });
+    </script>
+
+
+
+}*@

@@ -1,0 +1,150 @@
+﻿@model ProjectManagementApp.Models.Project
+
+@{
+    ViewBag.Title = "Add Project";
+}
+
+
+
+<h2>Add Project</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+       
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the Project Name"} })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div >
+            
+            <div style="padding-left:14em;">
+                <input id="switch"  type="checkbox" value="" />
+                <Label for="switch">Set Start and End Date</Label>
+            </div>
+        </div>
+
+        <div class="form-group x">
+            @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "datepicker form-control"} })
+                @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group x">
+            @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "datepicker form-control"} })
+                @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.priority, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*<input type="range" min="0" max="30" value="15" id="slider" />*@
+                @Html.EditorFor(model => model.priority, new { htmlAttributes = new { @id = "slider", @type = "range", @min = "0", @max = "30", @value = "15" } })
+                <span id="range"></span>
+                @*@Html.ValidationMessageFor(model => model.priority, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.taskNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.taskNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.taskNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.manager, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.DropDownListFor(model => model.manager, new SelectList(Model.managerlist, "name", "name"), "Select Manager for Project", new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.manager, Model.managerlist, "Select Manager for Project", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.manager, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add Project" class="btn btn-default" />
+                <span style="padding-left:10px;"><input type="reset" value="Reset" class="btn btn-default" /></span>
+            </div>
+        </div>
+    </div>
+}
+
+<hr />
+
+<div>
+    @Html.Action("SearchProject", "Home");
+</div>
+
+<hr />
+<footer>
+    <p>&copy; @DateTime.Now.Year - Project Management Application</p>
+</footer>
+
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+@section Scripts {
+
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript">
+        //for set date
+        $(function () {
+            $(".x").hide();
+            $("#switch").click(function () {
+                if ($(this).is(":checked")) {
+                    $(".x").show();
+
+                } else {
+                    $(".x").hide();
+                }
+            });
+        });
+
+        //datapicker
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+            });
+        });
+
+        //priority range
+        range.innerHTML = slider.value;
+
+        slider.oninput = function () {
+            range.innerHTML = this.value;
+        }
+
+        
+    </script>
+
+}

@@ -1,0 +1,148 @@
+﻿@model IEnumerable<ProjectManagementApp.Models.Project>
+
+<style>
+    .link-button:visited, .link-button:link {
+        background: #ffffff none repeat scroll 0 0;
+        border: 2px solid #4276B8;
+        color: #4276B8;
+        outline: medium none;
+        padding: 10px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .link-button:hover, .link-button:active {
+            Background-color: #4276B8;
+            Color: #ffffff;
+        }
+
+    .pad {
+        padding-left:10px;
+    }
+    .padu{
+        padding-top:5px;
+    }
+</style>
+
+<div class="container">
+    <div class="input-group">
+        <span class="input-group-addon" >
+            <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+        </span>
+        <input type="text" id="search" placeholder="Search Project" class="form-control" />
+    </div>
+</div>
+<br />
+<div class="container">
+    <div class="input-group">
+        <h4>Sort By:</h4>
+        <div class="padu">
+            <span class="pad">
+                @Html.ActionLink("Start Date", "AddProject", new { sortby = ViewBag.SortByStartDate }, new { @class = "link-button" })
+            </span>
+            <span class="pad">
+                @Html.ActionLink("End Date", "AddProject", new { sortby = ViewBag.SortByEndDate }, new { @class = "link-button" })
+            </span>
+            <span class="pad">
+                @Html.ActionLink("Priority", "AddProject", new { sortby = ViewBag.SortByPriority }, new { @class = "link-button" })
+            </span>
+            <span class="pad">
+                @Html.ActionLink("Status", "AddProject", new { sortby = ViewBag.SortByStatus }, new { @class = "link-button" })
+            </span>
+        </div>
+
+    </div>
+</div>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.priority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.taskNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.manager)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="search">
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.priority)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.taskNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.manager)
+        </td>*@
+        <td>
+            @Html.ActionLink("Update", "UpdateProject", new { id=item.Id }) |
+            @Html.ActionLink("Suspend", "SuspendProject", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+@section Scripts {
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript">
+
+      //Search Project
+      $(document).ready(function () {
+
+          function Contains(text_one, text_two) {
+              if (text_one.indexOf(text_two) != -1)
+                  return true;
+          }
+          $("#search").keyup(function () {
+              var searchtext = $("#search").val().toLowerCase();
+              $(".search").each(function () {
+                  if (!Contains($(this).text().toLowerCase(), searchtext)) {
+                      $(this).hide();
+                  }
+                  else {
+                      $(this).show();
+                  }
+              });
+          
+        });
+    });
+    </script>
+
+ 
+
+}
