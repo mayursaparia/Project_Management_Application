@@ -23,7 +23,6 @@ namespace ProjectManagementApp.Models
         public string name { get; set; }
 
         [Display(Name = "Start Date")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Start Date Required")]
         public Nullable<System.DateTime> startDate { get; set; }
 
         [Display(Name = "End Date")]
