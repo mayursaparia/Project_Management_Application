@@ -5,116 +5,90 @@
 }
 
 
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
-<h2>Add Project</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
-    <div class="form-horizontal">
-       
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the Project Name"} })
-                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+@section Scripts {
 
-        <div >
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript">
+        //for set date
+        $(function () {
+            $(".x").hide();
+            $("#switch").click(function () {
+                if ($(this).is(":checked")) {
+                    $(".x").show();
+
+                } else {
+                    $(".x").hide();
+                }
+            });
+        });
+
+        //datapicker
+        //$(document).ready(function () {
+        //    $(".datepicker").datepicker({
+        //    });
+        //});
+
+        //priority range
+        range.innerHTML = slider.value;
+
+        slider.oninput = function () {
+            range.innerHTML = this.value;
+        }
+
+        //manager Selection
+
+        $(document).ready(function () {
+            $("#select").click(function () {
+                var dropbox = $("#drop").val();
+                $("#text").val(dropbox);
+
+            });
+        });
+
+        //Date Validation
+
+        $(document).ready(function () {
             
-            <div style="padding-left:14em;">
-                <label class="switch">
-                    <input id="switch" type="checkbox" />
-                    <span class="slider round"></span>
-                </label>
-                <Label for="switch" style="padding-left:5px; padding-bottom:12px;">Set Start and End Date</Label>
-            </div>
-        </div>
+                $("#from").datepicker({
+                    numberOfMonths: 1,
+                    onSelect: function (selected) {
+                        var dt = new Date(selected);
+                        dt.setDate(dt.getDate() + 1);
+                        $("#to").datepicker("option", "minDate", dt);
+                    }
+                });
+                $("#to").datepicker({
+                    numberOfMonths: 1,
+                    onSelect: function (selected) {
+                        var dt = new Date(selected);
+                        dt.setDate(dt.getDate() - 1);
+                        $("#from").datepicker("option", "maxDate", dt);
+                    }
+                });
+            
+          });
+       
 
-        <div class="form-group x">
-            @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "datepicker form-control"} })
-                @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    </script>
 
-        <div class="form-group x">
-            @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "datepicker form-control"} })
-                @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.priority, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*<input type="range" min="0" max="30" value="15" id="slider" />*@
-                @Html.EditorFor(model => model.priority, new { htmlAttributes = new { @id = "slider", @type = "range", @min = "0", @max = "30", @value = "15" } })
-                <span id="range"></span>
-                @*@Html.ValidationMessageFor(model => model.priority, "", new { @class = "text-danger" })*@
-            </div>
-        </div>
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.taskNo, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.taskNo, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.taskNo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.manager, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.DropDownListFor(model => model.manager, new SelectList(Model.managerlist, "name", "name"), "Select Manager for Project", new { @class = "form-control" })*@
-                @Html.DropDownListFor(model => model.manager, Model.managerlist, "Select Manager for Project", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.manager, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add Project" class="btn btn-default" />
-                <span style="padding-left:10px;"><input type="reset" value="Reset" class="btn btn-default" /></span>
-            </div>
-        </div>
-    </div>
 }
 
-<hr />
-
-<div>
-    @Html.Action("SearchProject", "Home");
-</div>
-
-<hr />
-<footer>
-    <p>&copy; @DateTime.Now.Year - Project Management Application</p>
-</footer>
-
 <style>
+
+    /*toggle switch*/
+
     .switch {
         position: relative;
         display: inline-block;
@@ -135,7 +109,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #ccc;
+        background-color: #ff9a1f;
         -webkit-transition: .4s;
         transition: .4s;
     }
@@ -153,11 +127,11 @@
         }
 
     input:checked + .slider {
-        background-color: #2196F3;
+        background-color: blue;
     }
 
     input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
+        box-shadow: 0 0 1px none;
     }
 
     input:checked + .slider:before {
@@ -174,41 +148,239 @@
         .slider.round:before {
             border-radius: 50%;
         }
-</style>
 
-<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
-@section Scripts {
+    /* navigation bar*/
 
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script type="text/javascript">
-        //for set date
-        $(function () {
-            $(".x").hide();
-            $("#switch").click(function () {
-                if ($(this).is(":checked")) {
-                    $(".x").show();
+    .out {
+        background-color: lightgrey;
+        margin-top: 0;
+    }
 
-                } else {
-                    $(".x").hide();
-                }
-            });
-        });
+    .navigation {
+        margin-top: 0px;
+        padding-top: 18px;
+        height: 35px;
+    }
 
-        //datapicker
-        $(document).ready(function () {
-            $(".datepicker").datepicker({
-            });
-        });
 
-        //priority range
-        range.innerHTML = slider.value;
+    .link-nav {
+        color: grey;
+        text-decoration: none;
+        display: inline-block;
+    }
 
-        slider.oninput = function () {
-            range.innerHTML = this.value;
+        .link-nav:hover, .nav-a:link, .nav-a:active, .nav-a:visited, .nav-a:hover {
+            Color: #62bcbf;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        
-    </script>
+    /* allignment center*/
 
-}
+    .lab {
+        padding: 8px 10px 10px 160px;
+        color: blue;
+    }
+
+    .txt {
+        padding: 0px 0px 8px 160px;
+    }
+
+    /* slider css*/
+
+    .range-slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 10px;
+        border-radius: 5px;
+        background: #C8C8C8;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+        .range-slider:hover {
+            opacity: 1;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: blue;
+            cursor: pointer;
+        }
+</style>
+
+
+<div class="navigation">
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add Project", "AddProject", "Home", new { @class = "nav-a" })</strong></span>
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add Task", "AddTask", "Home", new { @class = "link-nav" })</strong></span>
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add User", "AddUser", "Home", new { @class = "link-nav" })</strong></span>
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("View Task", "ViewTask", "Home", new { @class = "link-nav" })</strong></span>
+</div>
+<body>
+
+    <div class="out">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div>
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="lab">
+                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="txt">
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the Project Name", @style = "width:50% !important ; min-width:580px;" } })
+                        <span> @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })</span>
+
+                    </div>
+                </div>
+
+                <div class="lab">
+                    <div class="txt" @*style="padding-left:14em;"*@>
+                        <label class="switch">
+                            <input id="switch" type="checkbox" />
+                            <span class="slider round"></span>
+                        </label>
+                        <Label for="switch" style="padding-left:5px; padding-bottom:10px;">Set Start and End Date</Label>
+                    </div>
+                </div>
+
+                <div class="lab x">
+                    @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="txt">
+                        @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "from", @style = "width:50% !important; min-width:580px;" } })
+                        @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="lab x">
+                    @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="txt">
+                        @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @id = "to", @style = "width:50% !important; min-width:580px;" } })
+                        @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="lab">
+                    <div id="range" style="padding-right:240px; color:black; float: right;"></div>
+                    @Html.LabelFor(model => model.priority, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="txt">
+                        @*<input type="range" min="0" max="30" value="15" id="slider" />*@
+
+                        @Html.EditorFor(model => model.priority, new { htmlAttributes = new { @id = "slider", @type = "range", @min = "0", @max = "30", @value = "15", @style = "width:50% !important; min-width:530px;", @class = "range-slider" } })
+
+                        @*@Html.ValidationMessageFor(model => model.priority, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.taskNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.taskNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.taskNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="lab">
+                    @Html.LabelFor(model => model.manager, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="txt">
+                        @*@Html.DropDownListFor(model => model.manager, new SelectList(Model.managerlist, "name", "name"), "Select Manager for Project", new { @class = "form-control" })*@
+                        <span style="display:inline-block;">@Html.EditorFor(model => model.manager, new { htmlAttributes = new { @class = "form-control", @id = "text", @placeholder = "Select Manager for Project", @style = "width:70% !important; min-width:500px;", @readonly = "true" } })</span> <span style="display:inline-block;"><button type="button" class="btn btn-default redcolor" data-toggle="modal" data-target="#myModal">Search</button></span>
+                        @Html.ValidationMessageFor(model => model.manager, "", new { @class = "text-danger" })
+
+
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Manager for Project</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        @Html.DropDownListFor(model => model.manager, Model.managerlist, "--Select--", new { @class = "form-control", @id = "drop", @style = "width:70% !important; min-width:500px;" })
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" id="select" data-dismiss="modal">Select</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="lab">
+                    <div class="txt">
+                        <input type="submit" value="Add Project" class="btn btn-default redcolor " />
+                        <span style="padding-left:10px;"><input type="reset" value="Reset" class="btn btn-default redcolor" /></span>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <hr />
+
+        <div>
+            @Html.Action("SearchProject", "Home");
+        </div>
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Project Management Application</p>
+        </footer>
+
+    </div>
+
+
+
+</body>
+
+
+<style>
+
+    body {
+        background-color: #C8C8C8;
+    }
+
+    /*red button*/
+
+    .redcolor, .redcolor:hover, .redcolor:active, .redcolor:visited, .redcolor:focus {
+        color: black;
+        background-color: red;
+        font-weight: bold;
+        border: 1px solid black;
+    }
+</style>
