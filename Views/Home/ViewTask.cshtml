@@ -4,114 +4,160 @@
     ViewBag.Title = "View Task";
 }
 
-<h2>View Task</h2>
 
+<style>
 
-<br />
-@using (Html.BeginForm("ViewTask", "Home", FormMethod.Get))
-{
-    <div class="container">
-        <div class="input-group">
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
-            </span>
-            @Html.TextBox("search",null,new { @class = "form-control", @placeholder = "Enter the Task Name" })
-            <span style="padding-left:10px;"><input type="submit" value="Search" class="btn btn-default" /></span>
-        </div>
-    </div>
-}
-<br />
+   
 
+    /* navigation bar*/
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.projectName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.taskName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.priority)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.parentTask)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.startDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.endDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.userName)
-        </th>
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr class="search">
-            <td>
-                @Html.DisplayFor(modelItem => item.projectName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.taskName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.priority)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.parentTask)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.startDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.endDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.userName)
-            </td>
-
-        </tr>
+    .out {
+        background-color: lightgrey;
+        margin-top: 20px;
     }
 
-</table>
-
-<hr />
-<footer>
-    <p>&copy; @DateTime.Now.Year - Project Management Application</p>
-</footer>
-
-
-@*@section Scripts {
-
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript">
-
-        //Search Project
-        $(document).ready(function () {
-
-            function Contains(text_one, text_two) {
-                if (text_one.indexOf(text_two) != -1)
-                    return true;
-            }
-            $("#search").click(function () {
-                var searchtext = $("#search").val().toLowerCase();
-                $(".search").each(function () {
-                    if (!Contains($(this).text().toLowerCase(), searchtext)) {
-                        $(this).hide();
-                    }
-                    else {
-                        $(this).show();
-                    }
-                });
-
-            });
-        });
-    </script>
+    .navigation {
+        margin-top: 0px;
+        padding-top: 18px;
+        height: 35px;
+    }
 
 
+    .link-nav {
+        color: grey;
+        text-decoration: none;
+        display: inline-block;
+    }
 
-}*@
+        .link-nav:hover, .nav-a:link, .nav-a:active, .nav-a:visited, .nav-a:hover {
+            Color: #62bcbf;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+    /* allignment center*/
+
+    .lab {
+        padding: 8px 10px 10px 160px;
+        color: blue;
+    }
+
+    .txt {
+        padding: 0px 0px 8px 160px;
+    }
+
+    
+</style>
+
+
+<div class="navigation">
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add Project", "AddProject", "Home", new { @class = "link-nav" })</strong></span>
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add Task", "AddTask", "Home", new { @class = "link-nav" })</strong></span>
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add User", "AddUser", "Home", new { @class = "link-nav" })</strong></span>
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("View Task", "ViewTask", "Home", new { @class = "nav-a" })</strong></span>
+</div>
+<body>
+
+    <div class="out">
+
+
+
+        <hr />
+        <br />
+        @using (Html.BeginForm("ViewTask", "Home", FormMethod.Get))
+        {
+            <div class="container" style="padding-left:190px;">
+                <div class="input-group">
+
+                    <span class="sbox"> @Html.TextBox("search", null, new { @class = "form-control", @placeholder = "Enter the Task Name", @style = "width:50% !important; min-width:650px;" })</span>
+                    <span class="sbox" style="padding-left:10px;"><input type="submit" value="Search" class="btn btn-default redcolor" /></span>
+                </div>
+            </div>
+        }
+        <br />
+        <br />
+        <div style="width:1050px; padding-left:100px;">
+            <table class="table" style="border:0px;">
+                <tr style="color:blue;">
+                    <th>
+                        @Html.DisplayNameFor(model => model.projectName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.taskName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.priority)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.parentTask)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.startDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.endDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.userName)
+                    </th>
+
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr class="search">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.projectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.taskName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.priority)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.parentTask)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.startDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.endDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.userName)
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <br />
+        <hr />
+        <footer style="padding:0 0 1px 10px;">
+            <p>&copy; @DateTime.Now.Year - Project Management Application</p>
+        </footer>
+
+    </div>
+
+
+
+</body>
+
+
+<style>
+
+    body {
+        background-color: #C8C8C8;
+    }
+
+    /*red button*/
+
+    .redcolor, .redcolor:hover, .redcolor:active, .redcolor:visited, .redcolor:focus {
+        color: black;
+        background-color: red;
+        font-weight: bold;
+        border: 1px solid black;
+    }
+</style>

@@ -293,7 +293,7 @@ namespace ProjectManagementApp.Controllers
         public ActionResult AddTask()
         {
 
-            var proj = db.Projects.Select(r => r.name);
+            var proj = db.Projects.Where(x => x.status== "In-Process").Select(r => r.name);
             var pt = db.Tasks.Select(r => r.parentTask).Distinct();
             var u = db.Users.Select(r => r.firstName);
             Task p = new Task
@@ -334,7 +334,7 @@ namespace ProjectManagementApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("AddTask");
             }
-            var proj = db.Projects.Select(r => r.name);
+            var proj = db.Projects.Where(x => x.status == "In-Process").Select(r => r.name);
             var pt = db.Tasks.Select(r => r.parentTask).Distinct();
             var u = db.Users.Select(r => r.firstName);
             Task p = new Task
