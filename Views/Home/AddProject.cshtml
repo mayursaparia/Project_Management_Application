@@ -304,7 +304,7 @@
                         </div>
                     </div>*@
 
-                <div class="lab">
+                <div class="lab" style="padding-top:23px;">
                     @Html.LabelFor(model => model.manager, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="txt">
                         @*@Html.DropDownListFor(model => model.manager, new SelectList(Model.managerlist, "name", "name"), "Select Manager for Project", new { @class = "form-control" })*@
@@ -358,7 +358,7 @@
         </div>
 
         <hr />
-        <footer>
+        <footer style="padding:0 0 1px 10px;">
             <p>&copy; @DateTime.Now.Year - Project Management Application</p>
         </footer>
 

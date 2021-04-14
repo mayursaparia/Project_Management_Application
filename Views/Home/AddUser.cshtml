@@ -4,167 +4,6 @@
     ViewBag.Title = "Add User";
 }
 
-<style>
-    .link-button:visited, .link-button:link {
-        background: #ffffff none repeat scroll 0 0;
-        border: 2px solid #4276B8;
-        color: #4276B8;
-        outline: medium none;
-        padding: 10px;
-        text-decoration: none;
-        display: inline-block;
-    }
-
-    .link-button:hover, .link-button:active {
-        Background-color: #4276B8;
-        Color: #ffffff;
-    }
-
-    .pad {
-        padding-left: 10px;
-    }
-
-    .padu {
-        padding-top: 5px;
-    }
-</style>
-
-<h2>Add User</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.firstName, new
-                {
-                    htmlAttributes = new
-                    {
-                        @class = "form-control",
-                        @placeholder = "Enter the First Name"@*, @required = "First Name Requierd"*@ }
-                })
-                @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lastName, new
-                {
-                    htmlAttributes = new
-                    {
-                        @class = "form-control",
-                        @placeholder = "Enter the Last Name"@*, @required = "Last Name Requierd"*@ }
-                })
-                @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.employeeId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.employeeId, new
-                {
-                    htmlAttributes = new
-                    {
-                        @class = "form-control",
-                        @placeholder = "Enter the Employee ID"@*, @required = "Employee ID Requierd"*@ }
-                })
-                @Html.ValidationMessageFor(model => model.employeeId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add User" class="btn btn-default" />
-                <span style="padding-left:10px;"><input type="reset" value="Reset" class="btn btn-default" /></span>
-            </div>
-
-        </div>
-    </div>
-}
-<hr />
-
-<div class="container">
-    <div class="input-group">
-        <span class="input-group-addon">
-            <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
-        </span>
-        <input type="text" id="search" placeholder="Search User" class="form-control" />
-    </div>
-</div>
-<br />
-
-
-<div class="container">
-    <div class="input-group">
-        <h4>Sort By:</h4>
-        <div class="padu">
-            <span class="pad">
-                @Html.ActionLink("First Name", "AddUser", new { sortby = ViewBag.SortByFirstName }, new { @class = "link-button" })
-            </span>
-            <span class="pad">
-                @Html.ActionLink("Last Name", "AddUser", new { sortby = ViewBag.SortByLastName }, new { @class = "link-button" })
-            </span>
-            <span class="pad">
-                @Html.ActionLink("Employee Id", "AddUser", new { sortby = ViewBag.SortByEmpId }, new { @class = "link-button" })
-            </span>
-        </div>
-
-    </div>
-</div>
-<br />
-
-<table class="table">
-    <tr>
-        <th>
-           @Html.DisplayNameFor(model => model.firstName)
-        </th>
-       
-        <th>
-           @Html.DisplayNameFor(model => model.lastName)
-        </th>
-            
-        <th>
-            @Html.DisplayNameFor(model => model.employeeId)
-       </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.userlist)
-    {
-        <tr class="search">
-            <td>
-                @Html.DisplayFor(modelItem => item.firstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.employeeId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit User", "EditUser", new { id = item.Id }) |
-                @Html.ActionLink("Delete User", "DeleteUser", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>
-
-<hr />
-<footer>
-    <p>&copy; @DateTime.Now.Year - Project Management Application</p>
-</footer>
-
-
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 @section Scripts {
@@ -198,3 +37,267 @@
 
 
 }
+
+
+<style>
+    .link-button:visited, .link-button:link {
+        background: #f1c27d none repeat scroll 0 0;
+        border: 1px solid black;
+        border-radius: 4px;
+        color: black;
+        outline: medium none;
+        padding: 5px;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .link-button:hover, .link-button:active {
+        Background-color: #f1c27d;
+        Color: black;
+        font-weight: bold;
+    }
+
+    .link-button-green:visited, .link-button-green:link {
+        background: darkgreen none repeat scroll 0 0;
+        border: 1px solid black;
+        border-radius: 4px;
+        color: white;
+        outline: medium none;
+        padding: 8px;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .link-button-green:hover, .link-button-green:active {
+        Background-color: darkgreen;
+        Color: black;
+        font-weight: bold;
+    }
+    
+    /* navigation bar*/
+
+    .out {
+        background-color: lightgrey;
+        margin-top: 0;
+    }
+
+    .navigation {
+        margin-top: 0px;
+        padding-top: 18px;
+        height: 35px;
+    }
+
+
+    .link-nav {
+        color: grey;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .link-nav:hover, .nav-a:link, .nav-a:active, .nav-a:visited, .nav-a:hover {
+            Color: #62bcbf;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+    /* allignment center*/
+
+    .lab {
+        padding: 8px 10px 10px 160px;
+        color: blue;
+    }
+
+    .txt {
+        padding: 0px 0px 8px 160px;
+    }
+
+    .pad {
+        padding-left: 15px;
+    }
+
+    .padu {
+        padding-top: 5px;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .display {
+        display: inline-block;
+        height: 125px;
+        padding: 0;
+        border: 0;
+        margin: 10px;
+    }  
+
+    .pro{
+        padding:5px 0 0 10px;
+        color:brown;
+    }
+</style>
+
+<div class="navigation">
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add Project", "AddProject", "Home", new { @class = "link-nav" })</strong></span>
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add Task", "AddTask", "Home", new { @class = "link-nav" })</strong></span>
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add User", "AddUser", "Home", new { @class = "nav-a" })</strong></span>
+    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("View Task", "ViewTask", "Home", new { @class = "link-nav" })</strong></span>
+</div>
+
+<body>
+
+    <div class="out">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div>
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="lab">
+                    @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="txt">
+                        @Html.EditorFor(model => model.firstName, new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class = "form-control",
+                           @placeholder = "Enter the First Name",
+                           @style = "width:50% !important ; min-width:580px;"
+                                @*, @required = "First Name Requierd"*@}
+})
+                        @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="lab">
+                    @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="txt">
+                        @Html.EditorFor(model => model.lastName, new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class = "form-control",
+                           @placeholder = "Enter the Last Name",
+                           @style = "width:50% !important ; min-width:580px;"
+                                @*, @required = "Last Name Requierd"*@}
+})
+                        @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="lab">
+                    @Html.LabelFor(model => model.employeeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="txt">
+                        @Html.EditorFor(model => model.employeeId, new
+                   {
+                       htmlAttributes = new
+                       {
+                           @class = "form-control",
+                           @placeholder = "Enter the Employee ID",
+                           @style = "width:50% !important ; min-width:580px;"
+                                @*, @required = "Employee ID Requierd"*@}
+})
+                        @Html.ValidationMessageFor(model => model.employeeId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="lab">
+                    <div class="txt">
+                        <input type="submit" value="Add User" class="btn btn-default redcolor" />
+                        <span style="padding-left:10px;"><input type="reset" value="Reset" class="btn btn-default redcolor" /></span>
+                    </div>
+
+                </div>
+            </div>
+        }
+        <hr />
+
+
+        <div class="container" style="padding-left:173px;">
+            <div class="input-group">
+
+                <input type="text" id="search" placeholder="Search Project" class="form-control" style="width:52em;" />
+            </div>
+        </div>
+        <br />
+        <div class="container" style="padding-left:173px;">
+            <div class="input-group">
+                <h5 class="padu" style="color:blue; padding-right:20px;">Sort By:</h5>
+                <div class="padu">
+                    <span class="pad">
+                        @Html.ActionLink("First Name", "AddUser", new { sortby = ViewBag.SortByFirstName }, new { @class = "link-button" })
+                    </span>
+                    <span class="pad">
+                        @Html.ActionLink("Last Name", "AddUser", new { sortby = ViewBag.SortByLastName }, new { @class = "link-button" })
+                    </span>
+                    <span class="pad">
+                        @Html.ActionLink("Employee Id", "AddUser", new { sortby = ViewBag.SortByEmpId }, new { @class = "link-button" })
+                    </span>
+                </div>
+
+            </div>
+        </div>
+        <br />
+
+
+
+        @foreach (var item in Model.userlist)
+        {
+            <div class="search" style="background-color:white;  margin-left:160px; width:52em; height:auto;">
+                <br />
+
+                <div class="display" style="background-color:#f0dc82; float:left; margin-left:18px;  width:37em;">
+
+                    <div class="pro" >  @Html.DisplayNameFor(model => model.employeeId)<text>:&nbsp;</text> @Html.DisplayFor(modelItem => item.employeeId)</div>
+
+                    <br />
+                    <div class="pro" >   @Html.DisplayNameFor(model => model.firstName)<text>:&nbsp;</text>  @Html.DisplayFor(modelItem => item.firstName)</div>
+                    <div class="pro" >  @Html.DisplayNameFor(model => model.lastName)<text>:&nbsp;</text>  @Html.DisplayFor(modelItem => item.lastName)</div>
+
+
+                </div>
+
+                <div class="display" style="background-color:#f0dc82; width:11em;">
+
+                    <div style="padding:10px;">@Html.ActionLink("Edit User", "EditUser", new { id = item.Id }, new { @class = "link-button-green" })</div>
+                    <div style="padding:10px;">@Html.ActionLink("Delete User", "DeleteUser", new { id = item.Id }, new { @class = "link-button-green" })</div>
+
+                </div>
+
+            </div>
+        }
+
+        <hr />
+        <footer style="padding:0 0 1px 10px;">
+            <p>&copy; @DateTime.Now.Year - Project Management Application</p>
+        </footer>
+
+    </div>
+
+
+
+</body>
+
+
+<style>
+
+    body {
+        background-color: #C8C8C8;
+    }
+
+    /*red button*/
+
+    .redcolor, .redcolor:hover, .redcolor:active, .redcolor:visited, .redcolor:focus {
+        color: black;
+        background-color: red;
+        font-weight: bold;
+        border: 1px solid black;
+    }
+</style>
+

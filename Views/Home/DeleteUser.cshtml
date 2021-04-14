@@ -4,47 +4,115 @@
     ViewBag.Title = "Delete User";
 }
 
-<h2>Delete User</h2>
+<style>
 
-<h3>Are you sure you want to delete this User?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.firstName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.firstName)
-        </dd>
+    /* allignment center*/
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employeeId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employeeId)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color" style="padding-left:75px;">
-            <input type="submit" value="Delete User" class="btn btn-default" /> 
-           
-        </div>
-        <div class="form-actions no-color">
-            @Html.ActionLink("Back", "AddUser")
-        </div>
+    .lab {
+        color: blue;
+        padding: 5px 0 1px 250px;
     }
-</div>
+
+    .txt {
+        padding: 5px 0 1px 300px ;
+    }
+
+    .out {
+        background-color: lightgrey;
+        margin-top: 50px;
+    }
+</style>
+
+
+<body>
+
+    <div class="out">
+
+
+        <h3 style="padding:10px 0 0 250px;">Are you sure you want to delete this User?</h3>
+        <br />
+        <div class="lab">
+            <span style="font-weight:bold;"> @Html.DisplayNameFor(model => model.employeeId)</span> <text style="font-weight:bold;">:&nbsp;</text> <span style="color:black">  @Html.DisplayFor(model => model.employeeId) </span>
+        </div>
+
+        <div class="lab">
+            <span style="font-weight:bold;">  @Html.DisplayNameFor(model => model.firstName)</span> <text style="font-weight:bold;">:&emsp;</text> <span style="color:black"> @Html.DisplayFor(model => model.firstName) </span>
+        </div>
+
+        <div class="lab">
+            <span style="font-weight:bold;">  @Html.DisplayNameFor(model => model.lastName)</span> <text style="font-weight:bold;">:&emsp;</text> <span style="color:black"> @Html.DisplayFor(model => model.lastName) </span>
+        </div>
+
+
+        
+
+        @*<div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.firstName)
+                </dt>
+
+                <dd style="color:black;">
+                    @Html.DisplayFor(model => model.firstName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.lastName)
+                </dt>
+
+                <dd style="color:black;">
+                    @Html.DisplayFor(model => model.lastName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.employeeId)
+                </dt>
+
+                <dd style="color:black;">
+                    @Html.DisplayFor(model => model.employeeId)
+                </dd>
+
+            </dl>
+
+        </div>*@
+        <br />
+        <div class="lab">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color" >
+                    <input type="submit" value="Delete User" class="btn btn-default redcolor" />
+
+                </div>
+
+            }
+        </div>
+
+
+        <hr />
+        <footer style="padding:0 0 1px 10px;">
+            <p>&copy; @DateTime.Now.Year - Project Management Application</p>
+        </footer>
+
+    </div>
+
+</body>
+
+<style>
+
+    body {
+        background-color: #C8C8C8;
+    }
+
+    /*red button*/
+
+    .redcolor, .redcolor:hover, .redcolor:active, .redcolor:visited, .redcolor:focus {
+        color: black;
+        background-color: red;
+        font-weight: bold;
+        border: 1px solid black;
+    }
+</style>

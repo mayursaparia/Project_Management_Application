@@ -4,6 +4,7 @@
     .link-button:visited, .link-button:link {
         background: #f1c27d none repeat scroll 0 0;
         border: 1px solid black;
+        border-radius:4px;
         color: black;
         outline: medium none;
         padding: 5px;
@@ -21,9 +22,10 @@
     .link-button-red:visited, .link-button-red:link {
         background: red none repeat scroll 0 0;
         border: 1px solid black;
+        border-radius: 4px;
         color: black;
         outline: medium none;
-        padding: 5px;
+        padding: 5px 8px 5px 8px;
         text-decoration: none;
         display: inline-block;
         font-weight: bold;
@@ -38,9 +40,10 @@
     .link-button-Purple:visited, .link-button-Purple:link {
         background: #8E44AD none repeat scroll 0 0;
         border: 1px solid black;
+        border-radius: 4px;
         color: black;
         outline: medium none;
-        padding: 5px;
+        padding: 5px 8px 5px 8px;
         text-decoration: none;
         display: inline-block;
         font-weight: bold;
@@ -112,7 +115,7 @@
 <div class="search" style="background-color:white;  margin-left:160px; width:52em; height:auto;">
     <br />
     
-    <div class="display" style="background-color:#f0dc82; float:left;  width:40em;">
+    <div class="display" style="background-color:#f0dc82; float:left; margin-left:18px; width:38em;">
 
         <div class="pro" style="padding-left:5px;"> @Html.DisplayNameFor(model => model.name) @Html.DisplayFor(modelItem => item.name)</div>
 
@@ -143,7 +146,7 @@
 
     </div>
 
-    <div class="display" style="background-color:#f0dc82; width:8em;">
+    <div class="display" style="background-color:#f0dc82; width:10em;">
 
         <div style="padding:10px;">@Html.ActionLink("Update", "UpdateProject", new { id = item.Id }, new { @class = "link-button-red" })</div>
         <div style="padding:10px;">@Html.ActionLink("Suspend", "SuspendProject", new { id = item.Id }, new { @class = "link-button-Purple" })</div>
