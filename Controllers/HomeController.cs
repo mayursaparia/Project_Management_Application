@@ -127,6 +127,8 @@ namespace ProjectManagementApp.Controllers
             {
                 return HttpNotFound();
             }
+
+            
             return View(project);
         }
 
@@ -136,6 +138,7 @@ namespace ProjectManagementApp.Controllers
         public ActionResult UpdateProject([Bind(Include = "Id,name,startDate,endDate,priority,taskNo,status,manager")] Project project)
         {
             project.status = "In-Process";
+
             if (ModelState.IsValid)
             {
                 db.Entry(project).State = EntityState.Modified;
