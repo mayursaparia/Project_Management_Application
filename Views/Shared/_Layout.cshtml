@@ -7,15 +7,49 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
-        body,html{
-            margin-top:0;
-            padding-top:0;
+        body, html {
+            margin-top: 0;
+            padding-top: 0;
         }
-       
+
+        .navigation {
+            margin-top: 0px;
+            padding-top: 18px;
+            height: 35px;
+            padding-left: 130px;
+            
+        }
+
+        
+        ul {
+            list-style: none;
+        }
+
+       .nav li {
+            float: left;
+        }
+        .nav li a{
+            color: grey;
+            text-decoration: none;
+        }
+
+        a:hover, a:active,  .link-nav-selected {
+                Color: #62bcbf !important;
+                text-decoration: none;
+         }
     </style>
-</head>
+
+
+    </head>
 <body>
-   
+    <div class="navigation">
+        <ul class="nav">
+            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("AddProject", "Home")" @(ViewContext.RouteData.Values["action"].ToString().Equals("AddProject") ? "class=link-nav-selected" : "")>Add Project</a></strong></li>
+            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("AddTask", "Home")" @(ViewContext.RouteData.Values["action"].ToString().Equals("AddTask") ? "class=link-nav-selected" : "")>Add Task</a></strong></li>
+            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("AddUser", "Home")" @(ViewContext.RouteData.Values["action"].ToString().Equals("AddUser") ? "class=link-nav-selected" : "")>Add User</a></strong></li>
+            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("ViewTask", "Home")" @(ViewContext.RouteData.Values["action"].ToString().Equals("ViewTask") ? "class=link-nav-selected" : "")>View Task</a></strong></li>
+        </ul>
+    </div>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -36,13 +70,14 @@
                 </div>
             </div>
         </div>*@
-    <div class="container body-content">
-        @RenderBody()
-        @*<hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>*@
-    </div>
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+    <footer style="padding:0 0 1px 10px;">
+        <p>&copy; @DateTime.Now.Year - Project Management Application</p>
+    </footer>
+
+</div>
 
 
     @Scripts.Render("~/bundles/jquery")

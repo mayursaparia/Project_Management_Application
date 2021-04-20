@@ -1,10 +1,14 @@
 ﻿@model IEnumerable<ProjectManagementApp.Models.Project>
 
+@{
+    Layout = null;
+}
+
 <style>
     .link-button:visited, .link-button:link {
         background: #f1c27d none repeat scroll 0 0;
         border: 1px solid black;
-        border-radius:4px;
+        border-radius: 4px;
         color: black;
         outline: medium none;
         padding: 5px;
@@ -68,17 +72,14 @@
     .display {
         display: inline-block;
         height: 200px;
-       
-       padding:0;
-       border:0;
-       margin:10px;
-    }   
-
-    .cell{
-        padding:10px;
+        padding: 0;
+        border: 0;
+        margin: 10px;
     }
 
-    
+    .cell {
+        padding: 10px;
+    }
 </style>
 
 <div class="container" style="padding-left:160px;">
@@ -112,82 +113,82 @@
 
 @foreach (var item in Model)
 {
-<div class="search" style="background-color:white;  margin-left:160px; width:52em; height:auto;">
-    <br />
-    
-    <div class="display" style="background-color:#f0dc82; float:left; margin-left:18px; width:38em;">
-
-        <div class="pro" style="padding-left:5px;"> @Html.DisplayNameFor(model => model.name) @Html.DisplayFor(modelItem => item.name)</div>
-
-       
-        
+    <div class="search" style="background-color:white;  margin-left:160px; width:52em; height:auto;">
         <br />
-        <table style="margin-left:10px;">
 
-            <tr>
-                <td class="cell">@Html.DisplayNameFor(model => model.taskNo)</td>
-                <td class="cell">@Html.DisplayFor(modelItem => item.taskNo)</td>
-                <td class="cell">@Html.DisplayNameFor(model => model.status)</td>
-                <td class="cell">@Html.DisplayFor(modelItem => item.status)</td>
-            </tr>
-            <tr>
-                <td class="cell">@Html.DisplayNameFor(model => model.startDate)</td>
-                <td class="cell">@Html.DisplayFor(modelItem => item.startDate)</td>
-                <td class="cell">@Html.DisplayNameFor(model => model.endDate)</td>
-                <td class="cell">@Html.DisplayFor(modelItem => item.endDate)</td>
-            </tr>
-            <tr>
-                <td class="cell">@Html.DisplayNameFor(model => model.priority)</td>
-                <td class="cell"> @Html.DisplayFor(modelItem => item.priority)</td>
-                <td class="cell"></td>
-                <td class="cell"></td>
-            </tr>
-        </table>
+        <div class="display" style="background-color:#f0dc82; float:left; margin-left:18px; width:38em;">
+
+            <div class="pro" style="padding-left:5px;"> @Html.DisplayNameFor(model => model.name) @Html.DisplayFor(modelItem => item.name)</div>
+
+
+
+            <br />
+            <table style="margin-left:10px;">
+
+                <tr>
+                    <td class="cell">@Html.DisplayNameFor(model => model.taskNo)</td>
+                    <td class="cell">@Html.DisplayFor(modelItem => item.taskNo)</td>
+                    <td class="cell">@Html.DisplayNameFor(model => model.status)</td>
+                    <td class="cell">@Html.DisplayFor(modelItem => item.status)</td>
+                </tr>
+                <tr>
+                    <td class="cell">@Html.DisplayNameFor(model => model.startDate)</td>
+                    <td class="cell">@Html.DisplayFor(modelItem => item.startDate)</td>
+                    <td class="cell">@Html.DisplayNameFor(model => model.endDate)</td>
+                    <td class="cell">@Html.DisplayFor(modelItem => item.endDate)</td>
+                </tr>
+                <tr>
+                    <td class="cell">@Html.DisplayNameFor(model => model.priority)</td>
+                    <td class="cell"> @Html.DisplayFor(modelItem => item.priority)</td>
+                    <td class="cell"></td>
+                    <td class="cell"></td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="display" style="background-color:#f0dc82; width:10em;">
+
+            <div style="padding:10px;">@Html.ActionLink("Update", "UpdateProject", new { id = item.Id }, new { @class = "link-button-red" })</div>
+            <div style="padding:10px;">@Html.ActionLink("Suspend", "SuspendProject", new { id = item.Id }, new { @class = "link-button-Purple" })</div>
+
+        </div>
 
     </div>
-
-    <div class="display" style="background-color:#f0dc82; width:10em;">
-
-        <div style="padding:10px;">@Html.ActionLink("Update", "UpdateProject", new { id = item.Id }, new { @class = "link-button-red" })</div>
-        <div style="padding:10px;">@Html.ActionLink("Suspend", "SuspendProject", new { id = item.Id }, new { @class = "link-button-Purple" })</div>
-
-    </div>
-
-</div>
 }
-    
-
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-    @section Scripts {
 
-        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-        <script type="text/javascript">
 
-            //Search Project
-            $(document).ready(function () {
+@section Scripts {
 
-                function Contains(text_one, text_two) {
-                    if (text_one.indexOf(text_two) != -1)
-                        return true;
-                }
-                $("#search").keyup(function () {
-                    var searchtext = $("#search").val().toLowerCase();
-                    $(".search").each(function () {
-                        if (!Contains($(this).text().toLowerCase(), searchtext)) {
-                            $(this).hide();
-                        }
-                        else {
-                            $(this).show();
-                        }
-                    });
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
 
+        //Search Project
+        $(document).ready(function () {
+
+            function Contains(text_one, text_two) {
+                if (text_one.indexOf(text_two) != -1)
+                    return true;
+            }
+            $("#search").keyup(function () {
+                var searchtext = $("#search").val().toLowerCase();
+                $(".search").each(function () {
+                    if (!Contains($(this).text().toLowerCase(), searchtext)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
                 });
+
             });
-        </script>
+        });
+    </script>
 
 
 
-    }
+}

@@ -13,27 +13,10 @@
 
     .out {
         background-color: lightgrey;
-        margin-top: 20px;
+        margin-top: 0;
     }
 
-    .navigation {
-        margin-top: 0px;
-        padding-top: 18px;
-        height: 35px;
-    }
-
-
-    .link-nav {
-        color: grey;
-        text-decoration: none;
-        display: inline-block;
-    }
-
-        .link-nav:hover, .nav-a:link, .nav-a:active, .nav-a:visited, .nav-a:hover {
-            Color: #62bcbf;
-            text-decoration: none;
-            display: inline-block;
-        }
+   
 
     /* allignment center*/
 
@@ -50,12 +33,7 @@
 </style>
 
 
-<div class="navigation">
-    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add Project", "AddProject", "Home", new { @class = "link-nav" })</strong></span>
-    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add Task", "AddTask", "Home", new { @class = "link-nav" })</strong></span>
-    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("Add User", "AddUser", "Home", new { @class = "link-nav" })</strong></span>
-    <span style="padding:0 100px 0 100px;"><strong>@Html.ActionLink("View Task", "ViewTask", "Home", new { @class = "nav-a" })</strong></span>
-</div>
+
 <body>
 
     <div class="out">
@@ -134,11 +112,7 @@
             </table>
         </div>
         <br />
-        <hr />
-        <footer style="padding:0 0 1px 10px;">
-            <p>&copy; @DateTime.Now.Year - Project Management Application</p>
-        </footer>
-
+     
     </div>
 
 
