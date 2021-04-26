@@ -39,85 +39,86 @@
 }
 
 
-<style>
-    .link-button:visited, .link-button:link {
-        background: #f1c27d none repeat scroll 0 0;
-        border: 1px solid black;
-        border-radius: 4px;
-        color: black;
-        outline: medium none;
-        padding: 5px;
-        text-decoration: none;
-        display: inline-block;
-        font-weight: bold;
-    }
 
-    .link-button:hover, .link-button:active {
-        Background-color: #f1c27d;
-        Color: black;
-        font-weight: bold;
-    }
+@*<style>
+        .link-button:visited, .link-button:link {
+            background: #f1c27d none repeat scroll 0 0;
+            border: 1px solid black;
+            border-radius: 4px;
+            color: black;
+            outline: medium none;
+            padding: 5px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+        }
 
-    .link-button-green:visited, .link-button-green:link {
-        background: darkgreen none repeat scroll 0 0;
-        border: 1px solid black;
-        border-radius: 4px;
-        color: white;
-        outline: medium none;
-        padding: 8px;
-        text-decoration: none;
-        display: inline-block;
-        font-weight: bold;
-    }
+        .link-button:hover, .link-button:active {
+            Background-color: #f1c27d;
+            Color: black;
+            font-weight: bold;
+        }
 
-    .link-button-green:hover, .link-button-green:active {
-        Background-color: darkgreen;
-        Color: black;
-        font-weight: bold;
-    }
-    
-    /* navigation bar*/
+        .link-button-green:visited, .link-button-green:link {
+            background: darkgreen none repeat scroll 0 0;
+            border: 1px solid black;
+            border-radius: 4px;
+            color: white;
+            outline: medium none;
+            padding: 8px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+        }
 
-    .out {
-        background-color: lightgrey;
-        margin-top: 20px;
-    }
+        .link-button-green:hover, .link-button-green:active {
+            Background-color: darkgreen;
+            Color: black;
+            font-weight: bold;
+        }
 
-  
-    /* allignment center*/
+        /* navigation bar*/
 
-    .lab {
-        padding: 8px 10px 10px 160px;
-        color: blue;
-    }
+        .out {
+            background-color: lightgrey;
+            margin-top: 20px;
+        }
 
-    .txt {
-        padding: 0px 0px 8px 160px;
-    }
 
-    .pad {
-        padding-left: 15px;
-    }
+        /* allignment center*/
 
-    .padu {
-        padding-top: 5px;
-        display: inline-block;
-        font-weight: bold;
-    }
+        .lab {
+            padding: 8px 10px 10px 160px;
+            color: blue;
+        }
 
-    .display {
-        display: inline-block;
-        height: 125px;
-        padding: 0;
-        border: 0;
-        margin: 10px;
-    }  
+        .txt {
+            padding: 0px 0px 8px 160px;
+        }
 
-    .pro{
-        padding:5px 0 0 10px;
-        color:brown;
-    }
-</style>
+        .pad {
+            padding-left: 15px;
+        }
+
+        .padu {
+            padding-top: 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .display {
+            display: inline-block;
+            height: 125px;
+            padding: 0;
+            border: 0;
+            margin: 10px;
+        }
+
+        .pro {
+            padding: 5px 0 0 10px;
+            color: brown;
+        }
+    </style>*@
 
 
 <body>
@@ -230,11 +231,11 @@
 
                 <div class="display" style="background-color:#f0dc82; float:left; margin-left:18px;  width:37em;">
 
-                    <div class="pro" >  @Html.DisplayNameFor(model => model.employeeId)<text>:&nbsp;</text> @Html.DisplayFor(modelItem => item.employeeId)</div>
+                    <div class="pro">  @Html.DisplayNameFor(model => model.employeeId)<text>:&nbsp;</text> @Html.DisplayFor(modelItem => item.employeeId)</div>
 
                     <br />
-                    <div class="pro" >   @Html.DisplayNameFor(model => model.firstName)<text>:&nbsp;</text>  @Html.DisplayFor(modelItem => item.firstName)</div>
-                    <div class="pro" >  @Html.DisplayNameFor(model => model.lastName)<text>:&nbsp;</text>  @Html.DisplayFor(modelItem => item.lastName)</div>
+                    <div class="pro">   @Html.DisplayNameFor(model => model.firstName)<text>:&nbsp;</text>  @Html.DisplayFor(modelItem => item.firstName)</div>
+                    <div class="pro">  @Html.DisplayNameFor(model => model.lastName)<text>:&nbsp;</text>  @Html.DisplayFor(modelItem => item.lastName)</div>
 
 
                 </div>
@@ -249,7 +250,7 @@
             </div>
         }
 
-     <br />
+        <br />
     </div>
 
 
@@ -257,7 +258,16 @@
 </body>
 
 
-<style>
+
+
+@section Styles{
+    <link href="~/Styles/AddUser.css" rel="stylesheet" />
+}
+
+
+
+
+@*<style>
 
     body {
         background-color: #C8C8C8;
@@ -271,5 +281,5 @@
         font-weight: bold;
         border: 1px solid black;
     }
-</style>
+</style>*@
 

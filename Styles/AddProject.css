@@ -1,0 +1,185 @@
+﻿
+    body {
+        background-color: #C8C8C8;
+    }
+    /*red button*/
+    #redcolor, #redcolor:hover, #redcolor:active, #redcolor:visited, #redcolor:focus {
+        color: black;
+        background-color: red;
+        font-weight: bold;
+        border: 1px solid black;
+    }
+    /*toggle switch*/
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 45px;
+        height: 24px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ff9a1f;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3.25px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: blue;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px none;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(22px);
+        -ms-transform: translateX(22px);
+        transform: translateX(22px);
+    }
+
+    .slider.round {
+        border-radius: 16px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    /* navigation bar*/
+    .out {
+        background-color: lightgrey;
+        margin-top: 0;
+    }
+    /* allignment center*/
+    .lab {
+        padding: 8px 10px 10px 160px;
+        color: blue;
+    }
+
+    .txt {
+        padding: 0px 0px 8px 160px;
+    }
+    /* slider css*/
+    .range-slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 10px;
+        border-radius: 5px;
+        background: #C8C8C8;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+        .range-slider:hover {
+            opacity: 1;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: blue;
+            cursor: pointer;
+        }
+
+.link-button:visited, .link-button:link {
+    background: #f1c27d none repeat scroll 0 0;
+    border: 1px solid black;
+    border-radius: 4px;
+    color: black;
+    outline: medium none;
+    padding: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.link-button:hover, .link-button:active {
+    Background-color: #f1c27d;
+    Color: white !important;
+    font-weight: bold;
+}
+
+.link-button-red:visited, .link-button-red:link {
+    background: red none repeat scroll 0 0;
+    border: 1px solid black;
+    border-radius: 4px;
+    color: black;
+    outline: medium none;
+    padding: 5px 8px 5px 8px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.link-button-red:hover, .link-button-red:active {
+    Background-color: red;
+    Color: white !important;
+    font-weight: bold;
+}
+
+.link-button-Purple:visited, .link-button-Purple:link {
+    background: #8E44AD none repeat scroll 0 0;
+    border: 1px solid black;
+    border-radius: 4px;
+    color: black;
+    outline: medium none;
+    padding: 5px 8px 5px 8px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.link-button-Purple:hover, .link-button-Purple:active {
+    Background-color: #8E44AD;
+    Color: white !important;
+    font-weight: bold;
+}
+
+.pad {
+    padding-left: 15px;
+}
+
+.padu {
+    padding-top: 5px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.display {
+    display: inline-block;
+    height: 200px;
+    padding: 0;
+    border: 0;
+    margin: 10px;
+}
+
+.cell {
+    padding: 10px;
+}

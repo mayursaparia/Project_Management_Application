@@ -4,63 +4,63 @@
     ViewBag.Title = "Add Project";
 }
 
-
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-
-
-<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 
-@section Scripts {
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+   
+
+    @section Scripts {
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script type="text/javascript">
-        //for set date
-        $(function () {
-            $(".x").hide();
-            $("#switch").click(function () {
-                if ($(this).is(":checked")) {
-                    $(".x").show();
+        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+        <script type="text/javascript">
+            //for set date
+            $(function () {
+                $(".x").hide();
+                $("#switch").click(function () {
+                    if ($(this).is(":checked")) {
+                        $(".x").show();
 
-                } else {
-                    $(".x").hide();
-                }
+                    } else {
+                        $(".x").hide();
+                    }
+                });
             });
-        });
 
-        //datapicker
-        //$(document).ready(function () {
-        //    $(".datepicker").datepicker({
-        //    });
-        //});
+            //datapicker
+            //$(document).ready(function () {
+            //    $(".datepicker").datepicker({
+            //    });
+            //});
 
-        //priority range
-        range.innerHTML = slider.value;
+            //priority range
+            range.innerHTML = slider.value;
 
-        slider.oninput = function () {
-            range.innerHTML = this.value;
-        }
+            slider.oninput = function () {
+                range.innerHTML = this.value;
+            }
 
-        //manager Selection
+            //manager Selection
 
-        $(document).ready(function () {
-            $("#select").click(function () {
-                var dropbox = $("#drop").val();
-                $("#text").val(dropbox);
+            $(document).ready(function () {
+                $("#select").click(function () {
+                    var dropbox = $("#drop").val();
+                    $("#text").val(dropbox);
 
+                });
             });
-        });
 
-        //Date Validation
+            //Date Validation
 
-        $(document).ready(function () {
-            
+            $(document).ready(function () {
+
                 $("#from").datepicker({
                     numberOfMonths: 1,
                     onSelect: function (selected) {
@@ -77,130 +77,129 @@
                         $("#from").datepicker("option", "maxDate", dt);
                     }
                 });
-            
-          });
-       
 
-    </script>
+            });
 
-}
 
-<style>
+        </script>
 
-    /*toggle switch*/
-
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 45px;
-        height: 24px;
     }
+    @*<style>
 
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+            /*toggle switch*/
 
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ff9a1f;
-        -webkit-transition: .4s;
-        transition: .4s;
-    }
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 45px;
+                height: 24px;
+            }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 3.25px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
+                .switch input {
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                }
 
-    input:checked + .slider {
-        background-color: blue;
-    }
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ff9a1f;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
 
-    input:focus + .slider {
-        box-shadow: 0 0 1px none;
-    }
+                .slider:before {
+                    position: absolute;
+                    content: "";
+                    height: 16px;
+                    width: 16px;
+                    left: 3.25px;
+                    bottom: 4px;
+                    background-color: white;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
 
-    input:checked + .slider:before {
-        -webkit-transform: translateX(22px);
-        -ms-transform: translateX(22px);
-        transform: translateX(22px);
-    }
+            input:checked + .slider {
+                background-color: blue;
+            }
 
-    /* Rounded sliders */
-    .slider.round {
-        border-radius: 16px;
-    }
+            input:focus + .slider {
+                box-shadow: 0 0 1px none;
+            }
 
-        .slider.round:before {
-            border-radius: 50%;
-        }
+            input:checked + .slider:before {
+                -webkit-transform: translateX(22px);
+                -ms-transform: translateX(22px);
+                transform: translateX(22px);
+            }
+
+            /* Rounded sliders */
+            .slider.round {
+                border-radius: 16px;
+            }
+
+                .slider.round:before {
+                    border-radius: 50%;
+                }
 
 
-    /* navigation bar*/
+            /* navigation bar*/
 
-    .out {
-        background-color: lightgrey;
-        margin-top: 0;
-    }
-
-   
-
-    /* allignment center*/
-
-    .lab {
-        padding: 8px 10px 10px 160px;
-        color: blue;
-    }
-
-    .txt {
-        padding: 0px 0px 8px 160px;
-    }
-
-    /* slider css*/
-
-    .range-slider {
-        -webkit-appearance: none;
-        width: 100%;
-        height: 10px;
-        border-radius: 5px;
-        background: #C8C8C8;
-        outline: none;
-        opacity: 0.7;
-        -webkit-transition: .2s;
-        transition: opacity .2s;
-    }
-
-        .range-slider:hover {
-            opacity: 1;
-        }
-
-        .range-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: blue;
-            cursor: pointer;
-        }
-</style>
+            .out {
+                background-color: lightgrey;
+                margin-top: 0;
+            }
 
 
 
-<body>
+            /* allignment center*/
+
+            .lab {
+                padding: 8px 10px 10px 160px;
+                color: blue;
+            }
+
+            .txt {
+                padding: 0px 0px 8px 160px;
+            }
+
+            /* slider css*/
+
+            .range-slider {
+                -webkit-appearance: none;
+                width: 100%;
+                height: 10px;
+                border-radius: 5px;
+                background: #C8C8C8;
+                outline: none;
+                opacity: 0.7;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+            }
+
+                .range-slider:hover {
+                    opacity: 1;
+                }
+
+                .range-slider::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background: blue;
+                    cursor: pointer;
+                }
+        </style>*@
+
+</head>
+
+<body style="background-color: #C8C8C8;">
 
     <div class="out">
         @using (Html.BeginForm())
@@ -286,7 +285,7 @@
                     @Html.LabelFor(model => model.manager, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="txt">
                         @*@Html.DropDownListFor(model => model.manager, new SelectList(Model.managerlist, "name", "name"), "Select Manager for Project", new { @class = "form-control" })*@
-                        <span style="display:inline-block;">@Html.EditorFor(model => model.manager, new { htmlAttributes = new { @class = "form-control", @id = "text", @placeholder = "Select Manager for Project", @style = "width:70% !important; min-width:500px;", @readonly = "true" } })</span> <span style="display:inline-block;"><button type="button" class="btn btn-default redcolor" data-toggle="modal" data-target="#myModal">Search</button></span>
+                        <span style="display:inline-block;">@Html.EditorFor(model => model.manager, new { htmlAttributes = new { @class = "form-control", @id = "text", @placeholder = "Select Manager for Project", @style = "width:70% !important; min-width:500px;", @readonly = "true" } })</span> <span style="display:inline-block;"><button id="redcolor" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Search</button></span>
                         @Html.ValidationMessageFor(model => model.manager, "", new { @class = "text-danger" })
 
 
@@ -322,8 +321,8 @@
 
                 <div class="lab">
                     <div class="txt">
-                        <input type="submit" value="Add Project" class="btn btn-default redcolor " />
-                        <span style="padding-left:10px;"><input type="reset" value="Reset" class="btn btn-default redcolor" /></span>
+                        <input id="redcolor" type="submit" value="Add Project" class="btn btn-default" />
+                        <span style="padding-left:10px;"><input id="redcolor" type="reset" value="Reset" class="btn btn-default redcolor" /></span>
                     </div>
                 </div>
             </div>
@@ -335,7 +334,7 @@
             @Html.Action("SearchProject", "Home");
         </div>
 
-       <br />
+        <br />
     </div>
 
 
@@ -343,18 +342,27 @@
 </body>
 
 
-<style>
+@section Styles{
+    <link href="~/Styles/AddProject.css" rel="stylesheet" />
+}
 
-    body {
-        background-color: #C8C8C8;
-    }
 
-    /*red button*/
 
-    .redcolor, .redcolor:hover, .redcolor:active, .redcolor:visited, .redcolor:focus {
-        color: black;
-        background-color: red;
-        font-weight: bold;
-        border: 1px solid black;
-    }
-</style>
+
+
+
+@*<style>
+
+        body {
+            background-color: #C8C8C8;
+        }
+
+        /*red button*/
+
+        .redcolor, .redcolor:hover, .redcolor:active, .redcolor:visited, .redcolor:focus {
+            color: black;
+            background-color: red;
+            font-weight: bold;
+            border: 1px solid black;
+        }
+    </style>*@
