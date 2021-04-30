@@ -129,6 +129,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -228,6 +231,7 @@
       <DependentUpon>ProjectModel.edmx</DependentUpon>
       <LastGenOutput>ProjectModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap-4.5.2.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\ProjectModel.edmx">
@@ -245,14 +249,17 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Styles\AddProject.css" />
     <Content Include="Styles\AddTask.css" />
     <Content Include="Styles\AddUser.css" />
+    <Content Include="Styles\Common.css" />
     <Content Include="Styles\ViewTask.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -266,15 +273,15 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\AddProject.cshtml" />
-    <Content Include="Views\Home\SearchProject.cshtml" />
-    <Content Include="Views\Home\AddUser.cshtml" />
-    <Content Include="Views\Home\UpdateProject.cshtml" />
-    <Content Include="Views\Home\SuspendProject.cshtml" />
-    <Content Include="Views\Home\EditUser.cshtml" />
-    <Content Include="Views\Home\DeleteUser.cshtml" />
-    <Content Include="Views\Home\AddTask.cshtml" />
-    <Content Include="Views\Home\ViewTask.cshtml" />
+    <Content Include="Views\Project\AddProject.cshtml" />
+    <Content Include="Views\Project\SearchProject.cshtml" />
+    <Content Include="Views\User\AddUser.cshtml" />
+    <Content Include="Views\Project\UpdateProject.cshtml" />
+    <Content Include="Views\Project\SuspendProject.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\User\DeleteUser.cshtml" />
+    <Content Include="Views\Task\AddTask.cshtml" />
+    <Content Include="Views\Task\ViewTask.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

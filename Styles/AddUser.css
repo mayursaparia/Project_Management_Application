@@ -3,34 +3,8 @@ body {
     background-color: #C8C8C8;
 }
 
-/*red button*/
-
-.redcolor, .redcolor:hover, .redcolor:active, .redcolor:visited, .redcolor:focus {
-    color: black;
-    background-color: red;
-    font-weight: bold;
-    border: 1px solid black;
-}
 
 
-
-.link-button:visited, .link-button:link {
-    background: #f1c27d none repeat scroll 0 0;
-    border: 1px solid black;
-    border-radius: 4px;
-    color: black;
-    outline: medium none;
-    padding: 5px;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: bold;
-}
-
-.link-button:hover, .link-button:active {
-    Background-color: #f1c27d;
-    Color: white !important;
-    font-weight: bold;
-}
 
 .link-button-green:visited, .link-button-green:link {
     background: darkgreen none repeat scroll 0 0;

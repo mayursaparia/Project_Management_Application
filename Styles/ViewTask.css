@@ -2,14 +2,6 @@
     background-color: #C8C8C8;
 }
 
-/*red button*/
-
-.redcolor, .redcolor:hover, .redcolor:active, .redcolor:visited, .redcolor:focus {
-    color: black;
-    background-color: red;
-    font-weight: bold;
-    border: 1px solid black;
-}
 
 /* navigation bar*/
 

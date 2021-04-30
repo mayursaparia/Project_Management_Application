@@ -1,9 +1,8 @@
 ﻿@model ProjectManagementApp.Models.Project
 
 @{
-    ViewBag.Title = "Update Project";
+    ViewBag.Title = "Suspend Project";
 }
-
 
 
 
@@ -13,55 +12,6 @@
 
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
-
-@section Scripts {
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script type="text/javascript">
-        
-
-        //priority range
-        range.innerHTML = slider.value;
-
-        slider.oninput = function () {
-            range.innerHTML = this.value;
-        }
-
-        
-
-        //Date Validation
-
-        $(document).ready(function () {
-
-            $("#from").datepicker({
-                numberOfMonths: 1,
-                onSelect: function (selected) {
-                    var dt = new Date(selected);
-                    dt.setDate(dt.getDate() + 1);
-                    $("#to").datepicker("option", "minDate", dt);
-                }
-            });
-            $("#to").datepicker({
-                numberOfMonths: 1,
-                onSelect: function (selected) {
-                    var dt = new Date(selected);
-                    dt.setDate(dt.getDate() - 1);
-                    $("#from").datepicker("option", "maxDate", dt);
-                }
-            });
-
-        });
-
-
-    </script>
-
-}
 
 <style>
 
@@ -84,41 +34,13 @@
         padding: 0px 0px 8px 160px;
     }
 
-    /* slider css*/
-
-    .range-slider {
-        -webkit-appearance: none;
-        width: 100%;
-        height: 10px;
-        border-radius: 5px;
-        background: #C8C8C8;
-        outline: none;
-        opacity: 0.7;
-        -webkit-transition: .2s;
-        transition: opacity .2s;
-    }
-
-        .range-slider:hover {
-            opacity: 1;
-        }
-
-        .range-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: blue;
-            cursor: pointer;
-        }
+    
 </style>
-
-
 
 
 <body>
 
     <div class="out">
-
 
         @using (Html.BeginForm())
         {
@@ -126,24 +48,23 @@
 
         <div>
 
-             <h2 style="color:blue; padding:5px 0 0 475px;">Update Project</h2>
-            
+            <h2 style="color:blue; padding:5px 0 0 475px;">Suspend Project</h2>
+
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
 
-            <div class="lab" style="padding-top:30px;">
+            <div class="lab">
                 @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="txt">
-                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the Project Name", @style = "width:50% !important ; min-width:580px;" } })
-                    <span> @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })</span>
-
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @readonly = "true", @style = "width:50% !important ; min-width:580px;" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="lab">
                 @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="txt">
-                    @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "from", @style = "width:50% !important; min-width:580px;" } })
+                    @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @readonly = "true", @style = "width:50% !important ; min-width:580px;" } })
                     @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -151,25 +72,20 @@
             <div class="lab">
                 @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="txt">
-                    @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @id = "to", @style = "width:50% !important; min-width:580px;" } })
+                    @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @readonly = "true", @style = "width:50% !important ; min-width:580px;" } })
                     @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="lab">
-                <div id="range" style="padding-right:240px; color:black; float: right;"></div>
                 @Html.LabelFor(model => model.priority, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="txt">
-                    @*<input type="range" min="0" max="30" value="15" id="slider" />*@
-
-                    @Html.EditorFor(model => model.priority, new { htmlAttributes = new { @id = "slider", @type = "range", @min = "0", @max = "30", @value = "15", @style = "width:50% !important; min-width:530px;", @class = "range-slider" } })
-
-                    @*@Html.ValidationMessageFor(model => model.priority, "", new { @class = "text-danger" })*@
+                    @Html.EditorFor(model => model.priority, new { htmlAttributes = new { @class = "form-control", @readonly = "true", @style = "width:50% !important ; min-width:580px;" } })
+                    @Html.ValidationMessageFor(model => model.priority, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-
-            <div class="lab" style="padding-top:25px;">
+            <div class="lab" >
                 @Html.LabelFor(model => model.taskNo, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="txt">
                     @Html.EditorFor(model => model.taskNo, new { htmlAttributes = new { @class = "form-control", @readonly = "true", @style = "width:50% !important ; min-width:580px;" } })
@@ -177,6 +93,7 @@
                 </div>
             </div>
 
+            
             <div class="lab">
                 @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="txt">
@@ -195,16 +112,17 @@
 
             <div class="lab">
                 <div class="txt">
-                    <input type="submit" value="Update" class="btn btn-default redcolor" />
+                    <input type="submit" value="Suspend" class="btn btn-default redcolor" />
                 </div>
             </div>
         </div>
         }
 
-        
+
     </div>
 
 </body>
+
 
 <style>
 
@@ -221,3 +139,4 @@
         border: 1px solid black;
     }
 </style>
+

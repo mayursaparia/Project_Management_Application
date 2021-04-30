@@ -42,13 +42,13 @@
 
         <hr />
         <br />
-        @using (Html.BeginForm("ViewTask", "Home", FormMethod.Get))
+        @using (Html.BeginForm("ViewTask", "Task", FormMethod.Get))
         {
             <div class="container" style="padding-left:190px;">
                 <div class="input-group">
 
                     <span class="sbox"> @Html.TextBox("search", null, new { @class = "form-control", @placeholder = "Enter the Task Name", @style = "width:50% !important; min-width:650px;" })</span>
-                    <span class="sbox" style="padding-left:10px;"><input type="submit" value="Search" class="btn btn-default redcolor" /></span>
+                    <span class="sbox" style="padding-left:10px;"><input type="submit" id="redcolor" value="Search"  class="btn btn-default" /></span>
                 </div>
             </div>
         }
@@ -122,6 +122,7 @@
 
 
 @section Styles{
+    <link href="~/Styles/Common.css" rel="stylesheet" />
     <link href="~/Styles/ViewTask.css" rel="stylesheet" />
 }
 

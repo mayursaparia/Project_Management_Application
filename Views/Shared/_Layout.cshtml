@@ -47,10 +47,10 @@
     <link href="~/Views/Home/StyleSheet.css" rel="stylesheet" />
     <div class="navigation">
         <ul class="nav">
-            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("AddProject", "Home")" @(ViewContext.RouteData.Values["action"].ToString().Equals("AddProject") ? "class=link-nav-selected" : "")>Add Project</a></strong></li>
-            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("AddTask", "Home")" @(ViewContext.RouteData.Values["action"].ToString().Equals("AddTask") ? "class=link-nav-selected" : "")>Add Task</a></strong></li>
-            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("AddUser", "Home")" @(ViewContext.RouteData.Values["action"].ToString().Equals("AddUser") ? "class=link-nav-selected" : "")>Add User</a></strong></li>
-            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("ViewTask", "Home")" @(ViewContext.RouteData.Values["action"].ToString().Equals("ViewTask") ? "class=link-nav-selected" : "")>View Task</a></strong></li>
+            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("AddProject", "Project")" @(ViewContext.RouteData.Values["action"].ToString().Equals("AddProject") ? "class=link-nav-selected" : "")>Add Project</a></strong></li>
+            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("AddTask", "Task")" @(ViewContext.RouteData.Values["action"].ToString().Equals("AddTask") ? "class=link-nav-selected" : "")>Add Task</a></strong></li>
+            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("AddUser", "User")" @(ViewContext.RouteData.Values["action"].ToString().Equals("AddUser") ? "class=link-nav-selected" : "")>Add User</a></strong></li>
+            <li style="padding:0 100px 0 100px;"><strong><a href="@Url.Action("ViewTask", "Task")" @(ViewContext.RouteData.Values["action"].ToString().Equals("ViewTask") ? "class=link-nav-selected" : "")>View Task</a></strong></li>
         </ul>
     </div>
     @*<div class="navbar navbar-inverse navbar-fixed-top">

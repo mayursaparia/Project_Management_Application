@@ -13,11 +13,9 @@
 
     @section Scripts {
 
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+        <script src="~/Scripts/jquery.min.js"></script>
+        <script src="~/Scripts/popper.min.js"></script>
+        <script src="~/Scripts/bootstrap-4.5.2.min.js"></script>
 
         <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
         <script type="text/javascript">
@@ -240,7 +238,7 @@
                 <div class="lab x">
                     @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="txt">
-                        @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "from", @style = "width:50% !important; min-width:580px;" } })
+                        @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "from", @style = "width:25% !important; min-width:300px;" } })
                         @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -248,7 +246,7 @@
                 <div class="lab x">
                     @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="txt">
-                        @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @id = "to", @style = "width:50% !important; min-width:580px;" } })
+                        @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @id = "to", @style = "width:25% !important; min-width:300px;" } })
                         @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -331,7 +329,7 @@
         <hr />
 
         <div>
-            @Html.Action("SearchProject", "Home");
+            @Html.Action("SearchProject", "Project");
         </div>
 
         <br />
@@ -343,6 +341,7 @@
 
 
 @section Styles{
+    <link href="~/Styles/Common.css" rel="stylesheet" />
     <link href="~/Styles/AddProject.css" rel="stylesheet" />
 }
 

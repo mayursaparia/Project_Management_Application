@@ -186,8 +186,8 @@
 
                 <div class="lab">
                     <div class="txt">
-                        <input type="submit" value="Add User" class="btn btn-default redcolor" />
-                        <span style="padding-left:10px;"><input type="reset" value="Reset" class="btn btn-default redcolor" /></span>
+                        <input type="submit" value="Add User" id="redcolor" class="btn btn-default" />
+                        <span style="padding-left:10px;"><input type="reset" value="Reset" id="redcolor" class="btn btn-default" /></span>
                     </div>
 
                 </div>
@@ -195,17 +195,19 @@
         }
         <hr />
 
+        <div style="padding-left:5px;">
+            <div class="lab" style="display:inline-block;">
+                <label>Search User</label>
 
-        <div class="container" style="padding-left:173px;">
-            <div class="input-group">
-
-                <input type="text" id="search" placeholder="Search Project" class="form-control" style="width:52em;" />
+                <div class="txt" style="display:inline-block; padding-left:70px;">
+                    <input type="text" id="search" placeholder="Enter the User Name" class="form-control" style="width:41.2em;" />
+                </div>
             </div>
         </div>
-        <br />
-        <div class="container" style="padding-left:173px;">
+        
+        <div class="container" style="padding-left:165px;">
             <div class="input-group">
-                <h5 class="padu" style="color:blue; padding-right:20px;">Sort By:</h5>
+                <h5 class="padu" style="color:blue; padding-right:93px;">Sort By</h5>
                 <div class="padu">
                     <span class="pad">
                         @Html.ActionLink("First Name", "AddUser", new { sortby = ViewBag.SortByFirstName }, new { @class = "link-button" })
@@ -261,6 +263,7 @@
 
 
 @section Styles{
+    <link href="~/Styles/Common.css" rel="stylesheet" />
     <link href="~/Styles/AddUser.css" rel="stylesheet" />
 }
 
