@@ -14,6 +14,14 @@ namespace ProjectManagementApp.Controllers
 
         ProjectManagementEntities db = new ProjectManagementEntities();
 
+        //[HttpPost]
+        //public JsonResult AjaxMethod()
+        //{
+        //    var man = db.Managers.Select(r => r.name);
+        //    Project p = new Project { managerlist = man };
+        //    return Json(p);
+        //}
+
 
         //Add project
         public ActionResult AddProject()
@@ -25,8 +33,12 @@ namespace ProjectManagementApp.Controllers
                 managerlist = new SelectList(man)
             };
 
-            //p.manager = "Not Selected";
+
+
+            //Project p = new Project { managerlist = man };
+            //ViewBag.x = man;
             return View(p);
+
         }
 
         [HttpPost]
@@ -37,17 +49,24 @@ namespace ProjectManagementApp.Controllers
 
             if (ModelState.IsValid)
             {
-                if (project.startDate == null)
+                if (db.Projects.Any(u => u.name.ToLower() == project.name.ToLower()))
                 {
-                    project.startDate = DateTime.Now;
-                    project.endDate = null;
+                    ModelState.AddModelError("name", "Project Name already exists.");
                 }
+                else
+                {
+                    if (project.startDate == null)
+                    {
+                        project.startDate = DateTime.Now;
+                        project.endDate = null;
+                    }
 
-                project.status = "In-Process";
-                project.taskNo = 0;
-                db.Projects.Add(project);
-                db.SaveChanges();
-                return RedirectToAction("AddProject");
+                    project.status = "In-Process";
+                    project.taskNo = 0;
+                    db.Projects.Add(project);
+                    db.SaveChanges();
+                    return RedirectToAction("AddProject");
+                }
             }
             var man = db.Managers.Select(r => r.name);
             Project p = new Project
@@ -93,7 +112,7 @@ namespace ProjectManagementApp.Controllers
                     project = project.OrderBy(x => x.status);
                     break;
                 default:
-                    project = project.OrderBy(x => x.name);
+                    project = project.OrderByDescending(x => x.Id);
                     break;
 
             }
@@ -175,6 +194,6 @@ namespace ProjectManagementApp.Controllers
             return View(project);
         }
 
-
+       
     }
 }

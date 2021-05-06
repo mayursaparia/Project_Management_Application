@@ -6,10 +6,12 @@
 
 <head>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-
-
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
-   
+    
+    <script src="~/Scripts/knockout-3.5.1.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
 
     @section Scripts {
 
@@ -32,11 +34,6 @@
                 });
             });
 
-            //datapicker
-            //$(document).ready(function () {
-            //    $(".datepicker").datepicker({
-            //    });
-            //});
 
             //priority range
             range.innerHTML = slider.value;
@@ -57,6 +54,8 @@
 
             //Date Validation
 
+           
+
             $(document).ready(function () {
 
                 $("#from").datepicker({
@@ -65,23 +64,47 @@
                         var dt = new Date(selected);
                         dt.setDate(dt.getDate() + 1);
                         $("#to").datepicker("option", "minDate", dt);
-                    }
+                    },
+                    showOn: 'both',
+                    buttonText: 'Show Date',
+                    buttonImageOnly: true,
+                    buttonImage: '/Icon/calendar.gif'
+                    
                 });
+                $('.ui-datepicker-trigger').css({ padding: '7px', margin: '5px', display: 'inline-block', width: '-webkit - calc(100 % - 21px)', cursor: 'pointer' });
+                
+            
+                
+
                 $("#to").datepicker({
                     numberOfMonths: 1,
                     onSelect: function (selected) {
                         var dt = new Date(selected);
                         dt.setDate(dt.getDate() - 1);
                         $("#from").datepicker("option", "maxDate", dt);
-                    }
+                    },
+                    showOn: 'button',
+                    buttonText: 'Show Date',
+                    buttonImageOnly: true,
+                    buttonImage: '/Icon/calendar.gif'
                 });
-
+                $('.ui-datepicker-trigger').css({ padding: '7px', margin: '5px', display: 'inline-block', width: '-webkit - calc(100 % - 21px)', cursor: 'pointer' });
             });
 
 
+                                    //manager view model
+                                    //function ManagerViewModel() {
+                                    //    var self = this;
+
+                                    //    self.manager = Model.managerlist;
+                                    //};
+
+                                    //ko.applyBindings(new ManagerViewModel());
         </script>
 
     }
+
+
     @*<style>
 
             /*toggle switch*/
@@ -220,8 +243,8 @@
                     @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="txt">
                         @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the Project Name", @style = "width:50% !important ; min-width:580px;" } })
-                        <span> @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })</span>
-
+                        <span> @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" }) </span>
+                        <span style="margin-left:0;"></span>
                     </div>
                 </div>
 
@@ -238,7 +261,11 @@
                 <div class="lab x">
                     @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="txt">
-                        @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "from", @style = "width:25% !important; min-width:300px;" } })
+                       
+
+                            @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "from", @placeholder = "Select Start Date", @style = "width:25% !important; min-width:300px; display:inline-block;" } })
+                       
+
                         @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -246,7 +273,8 @@
                 <div class="lab x">
                     @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="txt">
-                        @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @id = "to", @style = "width:25% !important; min-width:300px;" } })
+                        <span> @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @id = "to", @placeholder = "Select End Date", @style = "width:25% !important; min-width:300px; display:inline-block;" } }) </span>
+                       
                         @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -263,27 +291,13 @@
                     </div>
                 </div>
 
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.taskNo, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.taskNo, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.taskNo, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
-                        </div>
-                    </div>*@
+               
 
                 <div class="lab" style="padding-top:23px;">
                     @Html.LabelFor(model => model.manager, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="txt">
                         @*@Html.DropDownListFor(model => model.manager, new SelectList(Model.managerlist, "name", "name"), "Select Manager for Project", new { @class = "form-control" })*@
-                        <span style="display:inline-block;">@Html.EditorFor(model => model.manager, new { htmlAttributes = new { @class = "form-control", @id = "text", @placeholder = "Select Manager for Project", @style = "width:70% !important; min-width:500px;", @readonly = "true" } })</span> <span style="display:inline-block;"><button id="redcolor" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Search</button></span>
+                        <span style="display:inline-block;">@Html.EditorFor(model => model.manager, new { htmlAttributes = new { @class = "form-control", @id = "text", @placeholder = "Select Manager for Project", @style = "width:70% !important; min-width:500px;", @readonly = "true" } })</span> <span style="display:inline-block;"><button id="redcolor" type="button" class="btn btn-default y" data-toggle="modal" data-target="#myModal">Search</button></span>
                         @Html.ValidationMessageFor(model => model.manager, "", new { @class = "text-danger" })
 
 
@@ -300,6 +314,8 @@
                                     <!-- Modal body -->
                                     <div class="modal-body">
                                         @Html.DropDownListFor(model => model.manager, Model.managerlist, "--Select--", new { @class = "form-control", @id = "drop", @style = "width:70% !important; min-width:500px;" })
+                                        @*<select data-bind="options: $root.amanager, optionsText: mname, value: selectedCar, optionsCaption: 'Choose...',"></select>*@
+                                      
                                     </div>
 
                                     <!-- Modal footer -->
@@ -335,7 +351,55 @@
         <br />
     </div>
 
+    @*<script type="text/javascript">
 
+        //manager view model
+        function aj(x) {
+
+            $.ajax({
+                url: "/Project/AjaxMethod",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+
+                success: function (data) {
+
+                    for (var i = 0; i < data.managerlist.Length; i++) {
+                        var item = new manager(data.managerlist[i]);
+                        x.push(item);
+                    }
+                    return x;
+                }
+            });
+
+        };
+
+
+        function manager(name) {
+            this.mname = ko.observable();
+        };
+
+        function ManagerViewModel() {
+            var self = this;
+
+           // self.x = ['mayur','rachita'] ;
+
+            //var x = 
+
+            self.amanager = ko.observableArray();
+
+            //for (var i = 0; i < x.Length; i++) {
+            //    var item = new manager(x[i]);
+            //    self.amanager.push(item);
+            //}
+            
+
+
+            self.selectedCar = ko.observable();
+        };
+
+        ko.applyBindings(new ManagerViewModel());
+    </script>*@
 
 </body>
 
@@ -350,18 +414,3 @@
 
 
 
-@*<style>
-
-        body {
-            background-color: #C8C8C8;
-        }
-
-        /*red button*/
-
-        .redcolor, .redcolor:hover, .redcolor:active, .redcolor:visited, .redcolor:focus {
-            color: black;
-            background-color: red;
-            font-weight: bold;
-            border: 1px solid black;
-        }
-    </style>*@

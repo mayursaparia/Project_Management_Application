@@ -83,3 +83,11 @@
 .cell {
     padding: 10px;
 }
+
+#from {
+    background: url('http://jqueryui.com/resources/demos/datepicker/images/calendar.gif') no-repeat;
+    border: 1px solid #ccc;
+    height: 18px;
+    width: 100px;
+    padding-left: 25px;
+}

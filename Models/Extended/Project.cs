@@ -12,6 +12,8 @@ namespace ProjectManagementApp.Models
     public partial class Project
     {
         public IEnumerable<SelectListItem> managerlist { get; set; }
+        //public IQueryable<string> managerlist { get; set; } 
+
     }
 
     public class ProjectMetadata
@@ -20,6 +22,7 @@ namespace ProjectManagementApp.Models
 
         [Display(Name = "Project")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Project Name Required")]
+        [Remote("IsAlready", "Project", HttpMethod = "POST", ErrorMessage = "Project name already exists")]
         public string name { get; set; }
 
         [Display(Name = "Start Date")]
