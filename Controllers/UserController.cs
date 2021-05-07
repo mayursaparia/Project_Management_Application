@@ -18,7 +18,7 @@ namespace ProjectManagementApp.Controllers
         public ActionResult AddUser(string sortby)
         {
             var user = db.Users.AsQueryable();
-            ViewBag.SortByFirstName = sortby == null ? "firstName desc" : "";
+            ViewBag.SortByFirstName = sortby == "firstName" ? "firstName desc" : "firstName";
             ViewBag.SortByLastName = sortby == "lastName" ? "lastName desc" : "lastName";
             ViewBag.SortByEmpId = sortby == "employeeId" ? "employeeId desc" : "employeeId";
 
@@ -28,6 +28,9 @@ namespace ProjectManagementApp.Controllers
                 case "firstName desc":
                     user = user.OrderByDescending(x => x.firstName);
                     break;
+                case "firstName":
+                    user = user.OrderBy(x => x.firstName);
+                    break;
                 case "lastName desc":
                     user = user.OrderByDescending(x => x.lastName);
                     break;
@@ -35,13 +38,13 @@ namespace ProjectManagementApp.Controllers
                     user = user.OrderBy(x => x.lastName);
                     break;
                 case "employeeId desc":
-                    user = user.OrderByDescending(x => x.employeeId);
+                    user = user.OrderByDescending(x => x.Id);
                     break;
                 case "employeeId":
-                    user = user.OrderBy(x => x.employeeId);
+                    user = user.OrderBy(x => x.Id);
                     break;
                 default:
-                    user = user.OrderBy(x => x.firstName);
+                    user = user.OrderByDescending(x => x.Id);
                     break;
             }
             User u = new User();
@@ -51,7 +54,7 @@ namespace ProjectManagementApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddUser([Bind(Include = "firstName,lastName,employeeId")] User user)
+        public ActionResult AddUser([Bind(Include = "firstName,lastName")] User user)
         {
             if (ModelState.IsValid)
             {

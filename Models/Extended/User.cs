@@ -15,7 +15,7 @@ namespace ProjectManagementApp.Models
 
     public class UserMetadata
     {
-
+        [Display(Name = "Employee Id")]
         public int Id { get; set; }
 
 
@@ -27,10 +27,6 @@ namespace ProjectManagementApp.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name Required")]
         public string lastName { get; set; }
 
-        [Display(Name = "Employee ID")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Employee ID Required")]
-        [Range(100000,999999, ErrorMessage = "Invalid Employee ID")]
-        public Nullable<long> employeeId { get; set; }
 
     }
 }

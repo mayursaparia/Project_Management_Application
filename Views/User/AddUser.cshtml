@@ -167,7 +167,7 @@
 
 
 
-                <div class="lab">
+                @*<div class="lab">
                     @Html.LabelFor(model => model.employeeId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="txt">
                         @Html.EditorFor(model => model.employeeId, new
@@ -176,12 +176,12 @@
                        {
                            @class = "form-control",
                            @placeholder = "Enter the Employee ID",
-                           @style = "width:50% !important ; min-width:580px;"
-                                @*, @required = "Employee ID Requierd"*@}
+                           @style = "width:50% !important ; min-width:580px;"-->
+                                , @required = "Employee ID Requierd"<!--}
 })
                         @Html.ValidationMessageFor(model => model.employeeId, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div>*@
 
 
                 <div class="lab">
@@ -233,7 +233,7 @@
 
                 <div class="display" style="background-color:#f0dc82; float:left; margin-left:18px;  width:37em;">
 
-                    <div class="pro">  @Html.DisplayNameFor(model => model.employeeId)<text>:&nbsp;</text> @Html.DisplayFor(modelItem => item.employeeId)</div>
+                    <div class="pro">  @Html.DisplayNameFor(model => model.Id)<text>:&nbsp;</text> @Html.DisplayFor(modelItem => item.Id)</div>
 
                     <br />
                     <div class="pro">   @Html.DisplayNameFor(model => model.firstName)<text>:&nbsp;</text>  @Html.DisplayFor(modelItem => item.firstName)</div>

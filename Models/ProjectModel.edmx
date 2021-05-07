@@ -45,7 +45,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="firstName" Type="varchar" MaxLength="50" />
           <Property Name="lastName" Type="varchar" MaxLength="50" />
-          <Property Name="employeeId" Type="bigint" />
         </EntityType>
         <EntityContainer Name="ProjectManagementModelStoreContainer">
           <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
@@ -80,18 +79,9 @@
         <EntityContainer Name="ProjectManagementEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Managers" EntityType="Self.Manager" />
           <EntitySet Name="Projects" EntityType="Self.Project" />
-          <EntitySet Name="Users" EntityType="ProjectManagementModel.User" />
           <EntitySet Name="Tasks" EntityType="ProjectManagementModel.Task" />
+          <EntitySet Name="Users" EntityType="ProjectManagementModel.User" />
         </EntityContainer>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="employeeId" Type="Int64" />
-        </EntityType>
         <EntityType Name="Task">
           <Key>
             <PropertyRef Name="Id" />
@@ -104,6 +94,14 @@
           <Property Name="startDate" Type="DateTime" Precision="3" />
           <Property Name="endDate" Type="DateTime" Precision="3" />
           <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -133,16 +131,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="ProjectManagementModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="ProjectManagementModel.Task">
               <MappingFragment StoreEntitySet="Task">
@@ -153,6 +141,15 @@
                 <ScalarProperty Name="priority" ColumnName="priority" />
                 <ScalarProperty Name="taskName" ColumnName="taskName" />
                 <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ProjectManagementModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
