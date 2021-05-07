@@ -10,16 +10,12 @@
 
 
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
-
-
 @section Scripts {
 
 
     <script src="~/Scripts/jquery.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/bootstrap-4.5.2.min.js"></script>
-
-
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script type="text/javascript">
         //for Parent Task
@@ -46,6 +42,7 @@
         slider.oninput = function () {
             range.innerHTML = this.value;
         }
+
 
         //project Selection
 
@@ -78,25 +75,45 @@
         });
         //Date Validation
 
+
         $(document).ready(function () {
 
-            $("#from").datepicker({
+            //$("#from").datepicker({
+            //    numberOfMonths: 1,
+            //    onSelect: function (selected) {
+            //        var dt = new Date(selected);
+            //        dt.setDate(dt.getDate() + 1);
+            //        $("#to").datepicker("option", "minDate", dt);
+            //    }
+            //});
+            $("#fm").datepicker({
                 numberOfMonths: 1,
                 onSelect: function (selected) {
                     var dt = new Date(selected);
                     dt.setDate(dt.getDate() + 1);
-                    $("#to").datepicker("option", "minDate", dt);
-                }
-            });
-            $("#to").datepicker({
-                numberOfMonths: 1,
-                onSelect: function (selected) {
-                    var dt = new Date(selected);
-                    dt.setDate(dt.getDate() - 1);
-                    $("#from").datepicker("option", "maxDate", dt);
+                    $("#t").datepicker("option", "minDate", dt);
+                    $("#from").val(selected);
                 }
             });
 
+           
+
+            //$("#to").datepicker({
+            //    numberOfMonths: 1,
+            //    onSelect: function (selected) {
+            //        var dt = new Date(selected);
+            //        dt.setDate(dt.getDate() - 1);
+            //        $("#from").datepicker("option", "maxDate", dt);
+            //    }
+            //});
+
+            $("#t").datepicker({
+                numberOfMonths: 1,
+                onSelect: function (selected) {
+                    
+                    $("#to").val(selected);
+                }
+            });
         });
 
 
@@ -362,20 +379,33 @@
 
 
                 <div class="lab" style="padding-top:20px;">
-                    @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="txt">
-                        @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "from", @placeholder = "Select Start Date", @style = "width:50% !important ; min-width:580px;" } })
-                        @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+                    <div style="display:inline-block; padding-left:14px;">
+                        @*@Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })*@<label>Start Date</label><br />
+                        <label for="from" >&emsp;&ensp; &</label><br />
+                        @*@Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })*@<label>End Date</label>
+                    </div>
+                    <div class="txt" style="display:inline-block; padding-left:80px;">
+                        <div style="display:inline-block;">
+                            @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "from", @placeholder = "Select Start Date", @style = "width:29.1% !important ; min-width:237px;", @readonly = "true" } })
+                            <span id="fm"></span>
+                            @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+                        </div>
+                        <div style="display:inline-block;">
+                            @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @id = "to", @placeholder = "Select End Date", @style = "width:29.1% !important ; min-width:237px;", @readonly = "true" } })
+                            <span id="t"></span>
+                            @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="lab">
+                @*<div class="lab">
                     @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="txt">
                         @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @id = "to", @placeholder = "Select End Date", @style = "width:50% !important ; min-width:580px;" } })
                         @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div>*@
 
                 @*<div class="lab">
                         @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
