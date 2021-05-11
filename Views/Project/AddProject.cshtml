@@ -58,7 +58,7 @@
 
             $(document).ready(function () {
 
-                $("#from").datepicker({
+                $("#fr").datepicker({
                     numberOfMonths: 1,
                     onSelect: function (selected) {
                         var dt = new Date(selected);
@@ -66,7 +66,7 @@
                         $("#to").datepicker("option", "minDate", dt);
                     },
                     showOn: 'both',
-                    buttonText: 'Show Date',
+                    buttonText: 'Show start Date',
                     buttonImageOnly: true,
                     buttonImage: '/Icon/calendar.gif'
                     
@@ -81,10 +81,10 @@
                     onSelect: function (selected) {
                         var dt = new Date(selected);
                         dt.setDate(dt.getDate() - 1);
-                        $("#from").datepicker("option", "maxDate", dt);
+                        $("#fr").datepicker("option", "maxDate", dt);
                     },
-                    showOn: 'button',
-                    buttonText: 'Show Date',
+                    showOn: 'both',
+                    buttonText: 'Show end Date',
                     buttonImageOnly: true,
                     buttonImage: '/Icon/calendar.gif'
                 });
@@ -261,10 +261,10 @@
                 <div class="lab x">
                     @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="txt">
-                       
 
-                            @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "from", @placeholder = "Select Start Date", @style = "width:25% !important; min-width:300px; display:inline-block;" } })
-                       
+
+                        <span> @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "fr", @placeholder = "Select Start Date", @style = "width:25% !important; min-width:300px; display:inline-block;" } }) </span>
+
 
                         @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
                     </div>
