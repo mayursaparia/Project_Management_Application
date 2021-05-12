@@ -22,7 +22,7 @@ namespace ProjectManagementApp.Models
 
         [Display(Name = "Project")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Project Name Required")]
-        [Remote("IsAlready", "Project", HttpMethod = "POST", ErrorMessage = "Project name already exists")]
+       
         public string name { get; set; }
 
         [Display(Name = "Start Date")]
