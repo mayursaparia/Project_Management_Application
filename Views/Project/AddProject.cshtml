@@ -91,15 +91,37 @@
                 //$('.ui-datepicker-trigger').css({ padding: '7px', margin: '5px', display: 'inline-block', width: '-webkit - calc(100 % - 21px)', cursor: 'pointer' });
             });
 
+            //autocomplete
 
-                                    //manager view model
-                                    //function ManagerViewModel() {
-                                    //    var self = this;
+            $("#manager").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Project/GetManager",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (val) {
+                                return { label: val.name, value: val.name };
+                            }))
 
-                                    //    self.manager = Model.managerlist;
-                                    //};
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "", results: ""
+                }
+            });
+            $('.ui-autocomplete').css({ "z-index": "1001!important", "position": "absolute", "cursor": "pointer" });
 
-                                    //ko.applyBindings(new ManagerViewModel());
+
+
         </script>
 
     }
@@ -332,36 +354,37 @@
                 @Html.LabelFor(model => model.manager, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="txt">
                     @*@Html.DropDownListFor(model => model.manager, new SelectList(Model.managerlist, "name", "name"), "Select Manager for Project", new { @class = "form-control" })*@
-                    <span style="display:inline-block;">@Html.EditorFor(model => model.manager, new { htmlAttributes = new { @class = "form-control", @id = "text", @placeholder = "Select Manager for Project", @style = "width:70% !important; min-width:500px;", @readonly = "true" } })</span> <span style="display:inline-block;"><button id="redcolor" type="button" class="btn btn-default y" data-toggle="modal" data-target="#myModal">Search</button></span>
+                    <span style="display:inline-block;">@Html.EditorFor(model => model.manager, new { htmlAttributes = new { @class = "form-control", @placeholder = "Select Manager for Project", @style = "width:30% !important; min-width:285px;" } })</span> @*<span style="display:inline-block;"><button id="redcolor" type="button" class="btn btn-default y" data-toggle="modal" data-target="#myModal">Search</button></span>*@
+                <div>
                     @Html.ValidationMessageFor(model => model.manager, "", new { @class = "text-danger" })
+                </div>
 
-
-                    <div class="modal" id="myModal">
+                    <!--<div class="modal" id="myModal">
                         <div class="modal-dialog">
-                            <div class="modal-content">
+                            <div class="modal-content">-->
 
                                 <!-- Modal Header -->
-                                <div class="modal-header">
+                                <!--<div class="modal-header">
                                     <h4 class="modal-title">Manager for Project</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
+                                </div>-->
 
                                 <!-- Modal body -->
-                                <div class="modal-body">
+                                <!--<div class="modal-body">
                                     @Html.DropDownListFor(model => model.manager, Model.managerlist, "--Select--", new { @class = "form-control", @id = "drop", @style = "width:70% !important; min-width:500px;" })
-                                    @*<select data-bind="options: $root.amanager, optionsText: mname, value: selectedCar, optionsCaption: 'Choose...',"></select>*@
+                                   
 
-                                </div>
+                                </div>-->
 
                                 <!-- Modal footer -->
-                                <div class="modal-footer">
+                                <!--<div class="modal-footer">
                                     <button type="button" class="btn btn-success" id="select" data-dismiss="modal">Select</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
 
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
 
 

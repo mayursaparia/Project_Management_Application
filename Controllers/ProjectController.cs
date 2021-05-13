@@ -194,6 +194,19 @@ namespace ProjectManagementApp.Controllers
             return View(project);
         }
 
-       
+
+        //autocomplete Manager
+
+
+        [HttpPost]
+        public JsonResult GetManager(string Prefix)
+        {
+            //Note : you can bind same list from database  
+            var name = (from c in db.Managers
+                        where c.name.Contains(Prefix) 
+                        select new { c.name }).ToList();
+            return Json(name, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
