@@ -58,37 +58,37 @@
 
             $(document).ready(function () {
 
-                $("#fr").datepicker({
+                $("#fm").datepicker({
                     numberOfMonths: 1,
                     onSelect: function (selected) {
                         var dt = new Date(selected);
                         dt.setDate(dt.getDate() + 1);
-                        $("#to").datepicker("option", "minDate", dt);
+                        $("#t").datepicker("option", "minDate", dt);
                     },
-                    showOn: 'both',
-                    buttonText: 'Show start Date',
-                    buttonImageOnly: true,
-                    buttonImage: '/Icon/calendar.gif'
+                    //showOn: 'both',
+                    //buttonText: 'Show start Date',
+                    //buttonImageOnly: true,
+                    //buttonImage: '/Icon/calendar.gif'
                     
                 });
-                $('.ui-datepicker-trigger').css({ padding: '7px', margin: '5px', display: 'inline-block', width: '-webkit - calc(100 % - 21px)', cursor: 'pointer' });
+                //$('.ui-datepicker-trigger').css({ padding: '7px', margin: '5px', display: 'inline-block', width: '-webkit - calc(100 % - 21px)', cursor: 'pointer' });
                 
             
                 
 
-                $("#to").datepicker({
+                $("#t").datepicker({
                     numberOfMonths: 1,
                     onSelect: function (selected) {
                         var dt = new Date(selected);
                         dt.setDate(dt.getDate() - 1);
-                        $("#fr").datepicker("option", "maxDate", dt);
+                        $("#fm").datepicker("option", "maxDate", dt);
                     },
-                    showOn: 'both',
-                    buttonText: 'Show end Date',
-                    buttonImageOnly: true,
-                    buttonImage: '/Icon/calendar.gif'
+                    //showOn: 'both',
+                    //buttonText: 'Show end Date',
+                    //buttonImageOnly: true,
+                    //buttonImage: '/Icon/calendar.gif'
                 });
-                $('.ui-datepicker-trigger').css({ padding: '7px', margin: '5px', display: 'inline-block', width: '-webkit - calc(100 % - 21px)', cursor: 'pointer' });
+                //$('.ui-datepicker-trigger').css({ padding: '7px', margin: '5px', display: 'inline-block', width: '-webkit - calc(100 % - 21px)', cursor: 'pointer' });
             });
 
 
@@ -227,119 +227,154 @@
         {
             @Html.AntiForgeryToken()
 
-            <div>
+        <div>
 
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
-                        </div>
-                    </div>*@
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+            @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
-                <div class="lab">
-                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="txt">
-                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the Project Name", @style = "width:50% !important ; min-width:580px;" } })
-                        <span> @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" }) </span>
-                        <span style="margin-left:0;"></span>
-                    </div>
-                </div>
-
-                <div class="lab">
-                    <div class="txt" @*style="padding-left:14em;"*@>
-                        <label class="switch">
-                            <input id="switch" type="checkbox" />
-                            <span class="slider round"></span>
-                        </label>
-                        <Label for="switch" style="padding-left:5px; padding-bottom:10px;">Set Start and End Date</Label>
-                    </div>
-                </div>
-
-                <div class="lab x">
-                    @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="txt">
-
-
-                        <span> @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "fr", @placeholder = "Select Start Date", @style = "width:25% !important; min-width:300px; display:inline-block;" } }) </span>
-
-
-                        @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="lab x">
-                    @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="txt">
-                        <span> @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @id = "to", @placeholder = "Select End Date", @style = "width:25% !important; min-width:300px; display:inline-block;" } }) </span>
-                       
-                        @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="lab">
-                    <div id="range" style="padding-right:240px; color:black; float: right;"></div>
-                    @Html.LabelFor(model => model.priority, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="txt">
-                        @*<input type="range" min="0" max="30" value="15" id="slider" />*@
-
-                        @Html.EditorFor(model => model.priority, new { htmlAttributes = new { @id = "slider", @type = "range", @min = "0", @max = "30", @value = "15", @style = "width:50% !important; min-width:530px;", @class = "range-slider" } })
-
-                        @*@Html.ValidationMessageFor(model => model.priority, "", new { @class = "text-danger" })*@
-                    </div>
-                </div>
-
-               
-
-                <div class="lab" style="padding-top:23px;">
-                    @Html.LabelFor(model => model.manager, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="txt">
-                        @*@Html.DropDownListFor(model => model.manager, new SelectList(Model.managerlist, "name", "name"), "Select Manager for Project", new { @class = "form-control" })*@
-                        <span style="display:inline-block;">@Html.EditorFor(model => model.manager, new { htmlAttributes = new { @class = "form-control", @id = "text", @placeholder = "Select Manager for Project", @style = "width:70% !important; min-width:500px;", @readonly = "true" } })</span> <span style="display:inline-block;"><button id="redcolor" type="button" class="btn btn-default y" data-toggle="modal" data-target="#myModal">Search</button></span>
-                        @Html.ValidationMessageFor(model => model.manager, "", new { @class = "text-danger" })
-
-
-                        <div class="modal" id="myModal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Manager for Project</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-
-                                    <!-- Modal body -->
-                                    <div class="modal-body">
-                                        @Html.DropDownListFor(model => model.manager, Model.managerlist, "--Select--", new { @class = "form-control", @id = "drop", @style = "width:70% !important; min-width:500px;" })
-                                        @*<select data-bind="options: $root.amanager, optionsText: mname, value: selectedCar, optionsCaption: 'Choose...',"></select>*@
-                                      
-                                    </div>
-
-                                    <!-- Modal footer -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" id="select" data-dismiss="modal">Select</button>
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-
-                <div class="lab">
-                    <div class="txt">
-                        <input id="redcolor" type="submit" value="Add Project" class="btn btn-default" />
-                        <span style="padding-left:10px;"><input id="redcolor" type="reset" value="Reset" class="btn btn-default redcolor" /></span>
-                    </div>
+            <div class="lab">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="txt">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the Project Name", @style = "width:50% !important ; min-width:580px;" } })
+                    <span> @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" }) </span>
+                    <span style="margin-left:0;"></span>
                 </div>
             </div>
+
+            <div class="lab">
+                <div class="txt" @*style="padding-left:14em;"*@>
+                    <label class="switch">
+                        <input id="switch" type="checkbox" />
+                        <span class="slider round"></span>
+                    </label>
+                    <Label for="switch" style="padding-left:5px; padding-bottom:10px;">Set Start and End Date</Label>
+                </div>
+            </div>
+
+
+            <div class="lab x" style="padding-top:20px;">
+                <div style="display:inline-block; padding-left:14px; padding-right:0px; margin-right:0px;">
+                    @*@Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })*@<label>Start Date</label><br />
+                    <label style="display:inline-block;">&emsp;&ensp; &</label><br />
+                    @*@Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })*@<label>End Date</label>
+                </div>
+                <div style="display:inline-block; float:right; padding-right:233px; padding-top:12px; margin:0px; ">
+                    <div style="display:inline-block;">
+                        <span style="display:inline-block;"> @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "fm", @placeholder = "Select Start Date", @style = "width:30% !important ; min-width:243px;" } })</span>
+                        <label style="display:inline-block;" class="input-group-btn" for="fm">
+                            <span class="btn btn-default">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </label>
+
+                    </div>
+                    <div style="display:inline-block;">
+                        <span style="display:inline-block;"> @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @id = "t", @placeholder = "Select End Date", @style = "width:30% !important ; min-width:243px;" } })</span>
+                        <label style="display:inline-block;" class="input-group-btn" for="t">
+                            <span class="btn btn-default">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </label>
+
+                    </div>
+                    <div>
+                        <span> @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })</span>
+                        <span style="padding-left:162px;"> @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            @*<div class="lab x">
+            @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="txt">
+
+
+                <span> @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @id = "fr", @placeholder = "Select Start Date", @style = "width:25% !important; min-width:300px; display:inline-block;" } }) </span>
+
+
+                @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="lab x">
+            @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="txt">
+                <span> @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", @id = "to", @placeholder = "Select End Date", @style = "width:25% !important; min-width:300px; display:inline-block;" } }) </span>
+
+                @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+            <div class="lab">
+                <div id="range" style="padding-right:240px; color:black; float: right;"></div>
+                @Html.LabelFor(model => model.priority, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="txt">
+                    @*<input type="range" min="0" max="30" value="15" id="slider" />*@
+
+                    @Html.EditorFor(model => model.priority, new { htmlAttributes = new { @id = "slider", @type = "range", @min = "0", @max = "30", @value = "15", @style = "width:50% !important; min-width:530px;", @class = "range-slider" } })
+
+                    @*@Html.ValidationMessageFor(model => model.priority, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+
+
+            <div class="lab" style="padding-top:23px;">
+                @Html.LabelFor(model => model.manager, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="txt">
+                    @*@Html.DropDownListFor(model => model.manager, new SelectList(Model.managerlist, "name", "name"), "Select Manager for Project", new { @class = "form-control" })*@
+                    <span style="display:inline-block;">@Html.EditorFor(model => model.manager, new { htmlAttributes = new { @class = "form-control", @id = "text", @placeholder = "Select Manager for Project", @style = "width:70% !important; min-width:500px;", @readonly = "true" } })</span> <span style="display:inline-block;"><button id="redcolor" type="button" class="btn btn-default y" data-toggle="modal" data-target="#myModal">Search</button></span>
+                    @Html.ValidationMessageFor(model => model.manager, "", new { @class = "text-danger" })
+
+
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Manager for Project</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    @Html.DropDownListFor(model => model.manager, Model.managerlist, "--Select--", new { @class = "form-control", @id = "drop", @style = "width:70% !important; min-width:500px;" })
+                                    @*<select data-bind="options: $root.amanager, optionsText: mname, value: selectedCar, optionsCaption: 'Choose...',"></select>*@
+
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" id="select" data-dismiss="modal">Select</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="lab">
+                <div class="txt">
+                    <input id="redcolor" type="submit" value="Add Project" class="btn btn-default" />
+                    <span style="padding-left:10px;"><input id="redcolor" type="reset" value="Reset" class="btn btn-default redcolor" /></span>
+                </div>
+            </div>
+        </div>
         }
 
         <hr />
