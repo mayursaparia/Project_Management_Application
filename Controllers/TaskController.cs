@@ -106,7 +106,7 @@ namespace ProjectManagementApp.Controllers
 
         public ActionResult ViewTask(string search)
         {
-            return View(db.Tasks.Where(x => x.taskName.StartsWith(search) || search == null).ToList());
+            return View(db.SP_View_Task(search).ToList());
         }
 
 

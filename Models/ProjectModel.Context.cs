@@ -17,6 +17,9 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
+using System.Data.Entity.Core.Objects;
+using System.Linq;
+
 
 public partial class ProjectManagementEntities : DbContext
 {
@@ -39,6 +42,18 @@ public partial class ProjectManagementEntities : DbContext
     public virtual DbSet<Task> Tasks { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+
+
+    public virtual ObjectResult<SP_View_Task_Result> SP_View_Task(string search)
+    {
+
+        var searchParameter = search != null ?
+            new ObjectParameter("search", search) :
+            new ObjectParameter("search", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_View_Task_Result>("SP_View_Task", searchParameter);
+    }
 
 }
 

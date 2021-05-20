@@ -136,6 +136,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\Project.cs" />
+    <Compile Include="Models\Extended\SP_View_Task_Result.cs" />
     <Compile Include="Models\Extended\Task.cs" />
     <Compile Include="Models\Extended\User.cs" />
     <Compile Include="Models\Manager.cs">
@@ -158,6 +159,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_View_Task_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Task.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>

@@ -98,7 +98,8 @@ input:checked + .slider:before {
 
 /*Sortby switch*/
 
-.link-button:visited, .link-button:link {
+
+a.link-button:visited, a.link-button:link {
     background: #f1c27d none repeat scroll 0 0;
     border: 1px solid black;
     border-radius: 4px;
@@ -110,7 +111,7 @@ input:checked + .slider:before {
     font-weight: bold;
 }
 
-.link-button:hover, .link-button:active {
+a.link-button:hover, a.link-button:active, a.link-button:focus {
     Background-color: #f1c27d;
     Color: white !important;
     font-weight: bold;

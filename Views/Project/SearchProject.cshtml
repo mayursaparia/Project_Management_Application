@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<ProjectManagementApp.Models.Project>
 
-@{
-    Layout = null;
-}
+@{ Layout = null; }
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -27,6 +25,14 @@
                 }
             });
 
+        });
+
+
+
+        //focus 
+
+        $(".link-button").focus(function () {
+            $(this).css({ "Color":"white !important"});
         });
     });
 </script>
@@ -148,55 +154,52 @@
 
 @foreach (var item in Model)
 {
-    <div class="search" style="background-color:white;  margin-left:160px; width:52em; height:auto;">
+<div class="search" style="background-color:white;  margin-left:160px; width:52em; height:auto;">
+    <br />
+
+    <div class="display" style="background-color:#f0dc82; float:left; margin-left:18px; width:38em;">
+
+        <div class="pro" style="padding-left:5px;"> @Html.DisplayNameFor(model => model.name) @Html.DisplayFor(modelItem => item.name)</div>
+
+
+
         <br />
+        <table style="margin-left:10px;">
 
-        <div class="display" style="background-color:#f0dc82; float:left; margin-left:18px; width:38em;">
-
-            <div class="pro" style="padding-left:5px;"> @Html.DisplayNameFor(model => model.name) @Html.DisplayFor(modelItem => item.name)</div>
-
-
-
-            <br />
-            <table style="margin-left:10px;">
-
-                <tr>
-                    <td class="cell">@Html.DisplayNameFor(model => model.taskNo)</td>
-                    <td class="cell">@Html.DisplayFor(modelItem => item.taskNo)</td>
-                    <td class="cell">@Html.DisplayNameFor(model => model.status)</td>
-                    <td class="cell">@Html.DisplayFor(modelItem => item.status)</td>
-                </tr>
-                <tr>
-                    <td class="cell">@Html.DisplayNameFor(model => model.startDate)</td>
-                    <td class="cell">@Html.DisplayFor(modelItem => item.startDate)</td>
-                    <td class="cell">@Html.DisplayNameFor(model => model.endDate)</td>
-                    <td class="cell">@Html.DisplayFor(modelItem => item.endDate)</td>
-                </tr>
-                <tr>
-                    <td class="cell">@Html.DisplayNameFor(model => model.priority)</td>
-                    <td class="cell"> @Html.DisplayFor(modelItem => item.priority)</td>
-                    <td class="cell"></td>
-                    <td class="cell"></td>
-                </tr>
-            </table>
-
-        </div>
-
-        <div class="display" style="background-color:#f0dc82; width:10em;">
-
-            <div style="padding:10px;">@Html.ActionLink("Update", "UpdateProject", new { id = item.Id }, new { @class = "link-button-red" })</div>
-            <div style="padding:10px;">@Html.ActionLink("Suspend", "SuspendProject", new { id = item.Id }, new { @class = "link-button-Purple" })</div>
-
-        </div>
+            <tr>
+                <td class="cell">@Html.DisplayNameFor(model => model.taskNo)</td>
+                <td class="cell">@Html.DisplayFor(modelItem => item.taskNo)</td>
+                <td class="cell">@Html.DisplayNameFor(model => model.status)</td>
+                <td class="cell">@Html.DisplayFor(modelItem => item.status)</td>
+            </tr>
+            <tr>
+                <td class="cell">@Html.DisplayNameFor(model => model.startDate)</td>
+                <td class="cell">@Html.DisplayFor(modelItem => item.startDate)</td>
+                <td class="cell">@Html.DisplayNameFor(model => model.endDate)</td>
+                <td class="cell">@Html.DisplayFor(modelItem => item.endDate)</td>
+            </tr>
+            <tr>
+                <td class="cell">@Html.DisplayNameFor(model => model.priority)</td>
+                <td class="cell"> @Html.DisplayFor(modelItem => item.priority)</td>
+                <td class="cell"></td>
+                <td class="cell"></td>
+            </tr>
+        </table>
 
     </div>
-}
 
+    <div class="display" style="background-color:#f0dc82; width:10em;">
 
+        <div style="padding:10px;">@Html.ActionLink("Update", "UpdateProject", new { id = item.Id }, new { @class = "link-button-red" })</div>
+        <div style="padding:10px;">@Html.ActionLink("Suspend", "SuspendProject", new { id = item.Id }, new { @class = "link-button-Purple" })</div>
 
+    </div>
+
+</div>}
 
 
 
 @section Styles{
     <link href="~/Styles/AddProject.css" rel="stylesheet" />
+    <link href="~/Styles/Common.css" rel="stylesheet" />
 }

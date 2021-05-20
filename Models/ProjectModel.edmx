@@ -46,6 +46,9 @@
           <Property Name="firstName" Type="varchar" MaxLength="50" />
           <Property Name="lastName" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Function Name="SP_View_Task" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="search" Type="varchar(max)" Mode="In" />
+        </Function>
         <EntityContainer Name="ProjectManagementModelStoreContainer">
           <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
@@ -81,6 +84,9 @@
           <EntitySet Name="Projects" EntityType="Self.Project" />
           <EntitySet Name="Tasks" EntityType="ProjectManagementModel.Task" />
           <EntitySet Name="Users" EntityType="ProjectManagementModel.User" />
+          <FunctionImport Name="SP_View_Task" ReturnType="Collection(ProjectManagementModel.SP_View_Task_Result)">
+            <Parameter Name="search" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Task">
           <Key>
@@ -103,6 +109,16 @@
           <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <ComplexType Name="SP_View_Task_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="projectName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="taskName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="priority" Nullable="true" />
+          <Property Type="String" Name="parentTask" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="startDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="endDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="userName" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -154,6 +170,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_View_Task" FunctionName="ProjectManagementModel.Store.SP_View_Task">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectManagementModel.SP_View_Task_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="parentTask" ColumnName="parentTask" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
